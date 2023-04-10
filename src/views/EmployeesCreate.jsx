@@ -11,8 +11,10 @@ export const INPUT_STYLES = "outline-none bg-transparent text-primary";
 function EmployeesCreate() {
   return (
     <main className='bg-tertiary w-screen'>
-      <h2 className='text-center py-2'>Create employee</h2>
-      <div className='flex justify-center items-center my-6'>
+      <h1 className='text-center py-8 text-2xl font-bold uppercase text-primary'>
+        Create employee
+      </h1>
+      <div className='flex justify-center items-center my-2'>
         <form className='flex flex-col w-[80%] gap-y-4'>
           <div className={FIELD_STYLES}>
             <label className={LABEL_STYLES} htmlFor='firstName'>

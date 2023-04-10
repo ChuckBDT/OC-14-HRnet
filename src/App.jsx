@@ -1,13 +1,12 @@
 import { Outlet, NavLink } from "react-router-dom";
 import Header from "./parts/Header";
 
-import Logo from "./assets/logo.png";
+import Logo from "./assets/logo.svg";
 import "./App.css";
 
 function App() {
   return (
     <>
-      <Header />
       <Outlet />
       <nav className='w-full h-24 bg-primary sticky bottom-0 '>
         <ul className='flex h-full justify-around items-center'>
