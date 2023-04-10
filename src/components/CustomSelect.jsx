@@ -4,11 +4,6 @@ function CustomSelect({ list, placeholder, inputStyle, liStyle }) {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
 
-  function setState(state) {
-    setOpen(!open);
-    setValue(state);
-  }
-
   return (
     <>
       <input
@@ -26,7 +21,10 @@ function CustomSelect({ list, placeholder, inputStyle, liStyle }) {
               <li
                 key={i}
                 className={liStyle}
-                onClick={() => setState(item.name)}
+                onClick={() => {
+                  setOpen(!open);
+                  setValue(item.name);
+                }}
               >
                 {item.name}
               </li>

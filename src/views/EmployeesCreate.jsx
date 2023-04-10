@@ -67,7 +67,12 @@ function EmployeesCreate() {
           </div>
           <div className={FIELD_STYLES}>
             <label className={LABEL_STYLES}>Department</label>
-            <CustomSelect list={departments} placeholder='Select Department' />
+            <CustomSelect
+              list={departments}
+              placeholder='Select Department'
+              inputStyle={INPUT_STYLES}
+              liStyle='hover:bg-primaryLight hover:text-white text-primary'
+            />
           </div>
           <button
             type='submit'
