@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 
 function useModal() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = React.useState(false);
 
   function setContent(content) {
     if (open) {

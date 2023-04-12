@@ -1,14 +1,17 @@
 import React from "react";
 import CustomSelect from "../components/CustomSelect";
+import useModal from "../utils/useModal";
 
 import { states } from "../data/states";
 import { departments } from "../data/departments";
 
 const FIELD_STYLES = "bg-secondary h-fit rounded-xl py-2 px-3";
 const LABEL_STYLES = "text-sm text-primaryLight w-full block";
-export const INPUT_STYLES = "outline-none bg-transparent text-primary";
+const INPUT_STYLES = "outline-none bg-transparent text-primary";
 
 function EmployeesCreate() {
+  const [setModalOne, triggerModalOne] = useModal();
+
   return (
     <main className='bg-tertiary w-screen'>
       <h1 className='text-center py-8 text-2xl font-bold uppercase text-primary'>
@@ -77,13 +80,17 @@ function EmployeesCreate() {
             />
           </div>
           <button
-            type='submit'
+            onClick={(e) => {
+              e.preventDefault();
+              triggerModalOne();
+            }}
             className='bg-primary text-white h-16 my-6 rounded-xl'
           >
             Save
           </button>
         </form>
       </div>
+      {setModalOne(<p>Employee Created !</p>)}
     </main>
   );
 }
