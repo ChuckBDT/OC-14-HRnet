@@ -6,6 +6,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        copperplate: ["copperplate"],
+      },
       colors: colors,
       animation: { logoSpin: "logoSpin 5s linear infinite" },
       keyframes: {
