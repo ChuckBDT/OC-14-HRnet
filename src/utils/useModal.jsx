@@ -1,5 +1,7 @@
 import React from "react";
 
+import { closeIcon } from "../assets/iconsBank";
+
 function useModal() {
   const [open, setOpen] = React.useState(false);
 
@@ -12,7 +14,7 @@ function useModal() {
               className='font-bold text-end cursor-pointer'
               onClick={() => triggerModal()}
             >
-              Close
+              {closeIcon}
             </div>
             <div className='useModal-content'>{content}</div>
           </div>
