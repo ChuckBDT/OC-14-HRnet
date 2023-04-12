@@ -6,6 +6,7 @@ import "./index.css";
 import Home from "./views/Home";
 import EmployeesList from "./views/EmployeesList";
 import EmployeesCreate from "./views/EmployeesCreate";
+import Settings from "./views/Settings";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "/employees/create",
         element: <EmployeesCreate />,
+      },
+      {
+        path: "/settings",
+        element: <Settings />,
       },
     ],
   },

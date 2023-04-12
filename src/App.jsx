@@ -3,6 +3,12 @@ import Header from "./parts/Header";
 
 import Logo from "./assets/logo.svg";
 import "./App.css";
+import {
+  userAddIcon,
+  homeIcon,
+  listIcon,
+  settingsIcon,
+} from "./assets/iconsBank";
 
 function App() {
   return (
@@ -10,11 +16,11 @@ function App() {
       <Outlet />
       <nav className='w-full h-24 bg-primary sticky bottom-0 '>
         <ul className='flex h-full justify-around items-center'>
-          <NavLink to={"/"}>HO</NavLink>
-          <NavLink to={"/employees/list"}>EL</NavLink>
+          <NavLink to={"/"}>{homeIcon}</NavLink>
+          <NavLink to={"/employees/list"}>{listIcon}</NavLink>
           <img src={Logo} alt='' className='h-16' />
-          <NavLink to={"/employees/create"}>CE</NavLink>
-          <NavLink to={"/#"}>SE</NavLink>
+          <NavLink to={"/employees/create"}>{userAddIcon}</NavLink>
+          <NavLink to={"/settings"}>{settingsIcon}</NavLink>
         </ul>
       </nav>
     </>
