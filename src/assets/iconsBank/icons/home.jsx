@@ -1,7 +1,9 @@
+import colors from "../../colors";
+
 const homeIcon = (
   <svg
     stroke='white'
-    fill='white'
+    fill={colors.tertiary}
     strokeWidth='0'
     viewBox='0 0 1024 1024'
     height='1.5em'

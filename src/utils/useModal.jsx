@@ -9,14 +9,14 @@ function useModal() {
     if (open) {
       return (
         <div className='useModal-bg fixed top-0 z-10 h-screen w-screen bg-primary/50 overflow-hidden flex justify-center items-center'>
-          <div className='useModal-frame bg-tertiary p-8 m-4 rounded-2xl'>
+          <div className='useModal-frame relative bg-tertiary p-8 m-4 rounded-2xl shadow-lg '>
             <div
-              className='font-bold text-end cursor-pointer'
+              className='absolute top-3 right-3 cursor-pointer'
               onClick={() => triggerModal()}
             >
               {closeIcon}
             </div>
-            <div className='useModal-content'>{content}</div>
+            <div className='useModal-content py-2'>{content}</div>
           </div>
         </div>
       );

@@ -7,6 +7,13 @@ export default {
   theme: {
     extend: {
       colors: colors,
+      animation: { logoSpin: "logoSpin 5s linear infinite" },
+      keyframes: {
+        logoSpin: {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
+      },
     },
   },
   plugins: [],

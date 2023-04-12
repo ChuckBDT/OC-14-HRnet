@@ -6,5 +6,8 @@ const colors = {
   toggleActive: "#29a1fa",
   alertLight: "#fee9e9",
   alertDark: "#df402e",
+  logoDark: "#5d7107",
+  logoMedium: "#74870e",
+  logoLight: "#95ac17",
 };
 export default colors;

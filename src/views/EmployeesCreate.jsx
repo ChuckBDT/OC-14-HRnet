@@ -13,7 +13,7 @@ function EmployeesCreate() {
   const [setModalOne, triggerModalOne] = useModal();
 
   return (
-    <main className='bg-tertiary w-screen'>
+    <main className='bg-tertiary'>
       <h1 className='text-center py-8 text-2xl font-bold uppercase text-primary'>
         Create employee
       </h1>

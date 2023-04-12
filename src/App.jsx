@@ -1,5 +1,4 @@
 import { Outlet, NavLink } from "react-router-dom";
-import Header from "./parts/Header";
 
 import Logo from "./assets/logo.svg";
 import "./App.css";
@@ -14,7 +13,7 @@ function App() {
   return (
     <>
       <Outlet />
-      <nav className='w-full h-24 bg-primary sticky bottom-0 '>
+      <nav className='w-full h-24 bg-primary sticky bottom-0 z-50 '>
         <ul className='flex h-full justify-around items-center'>
           <NavLink to={"/"}>{homeIcon}</NavLink>
           <NavLink to={"/employees/list"}>{listIcon}</NavLink>
