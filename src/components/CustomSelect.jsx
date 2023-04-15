@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function CustomSelect({ list, placeholder, inputStyle, liStyle }) {
+function CustomSelect({ list, placeholder, inputStyle, liStyle, form }) {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
 
@@ -8,6 +8,7 @@ function CustomSelect({ list, placeholder, inputStyle, liStyle }) {
     <>
       <input
         type='text'
+        {...form}
         onClick={() => setOpen(!open)}
         className={inputStyle}
         placeholder={placeholder}
