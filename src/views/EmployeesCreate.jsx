@@ -18,8 +18,11 @@ function EmployeesCreate() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
 
+  const onSubmit = (data) => {
+    console.log(data);
+    triggerModalOne();
+  };
   return (
     <main className='bg-tertiary'>
       <h1 className='text-center py-8 text-2xl font-bold uppercase text-primary'>
@@ -28,7 +31,7 @@ function EmployeesCreate() {
       <div className='flex justify-center items-center my-2'>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className='flex flex-col w-[80%] gap-y-4'
+          className='flex flex-col w-[80%] gap-y-3'
         >
           <div
             className={`${FIELD_STYLES} ${
@@ -76,18 +79,22 @@ function EmployeesCreate() {
               id='birthDate'
             />
           </div>
-          <div className={FIELD_STYLES}>
+          <div
+            className={`${FIELD_STYLES} ${
+              errors.startDate ? "border-alertDark " : "border-transparent"
+            }`}
+          >
             <label className={LABEL_STYLES} htmlFor='startDate'>
               Start Date
             </label>
             <input
-              {...register("startDate")}
+              {...register("startDate", { required: true })}
               className={INPUT_STYLES}
               type='text'
               id='startDate'
             />
           </div>
-          <div className={FIELD_STYLES}>
+          <div className={`${FIELD_STYLES} border-transparent`}>
             <label className={LABEL_STYLES} htmlFor='street'>
               Street
             </label>
@@ -98,7 +105,7 @@ function EmployeesCreate() {
               id='street'
             />
           </div>
-          <div className={FIELD_STYLES}>
+          <div className={`${FIELD_STYLES} border-transparent`}>
             <label className={LABEL_STYLES} htmlFor='city'>
               City
             </label>
@@ -109,17 +116,17 @@ function EmployeesCreate() {
               id='city'
             />
           </div>
-          <div className={FIELD_STYLES}>
+          <div className={`${FIELD_STYLES} border-transparent`}>
             <label className={LABEL_STYLES}>State</label>
             <CustomSelect
-              form={{ ...register("state", { required: true }) }}
+              form={{ ...register("state") }}
               list={states}
               placeholder='Select State'
               inputStyle={INPUT_STYLES}
               liStyle='hover:bg-primaryLight hover:text-white text-primary'
             />
           </div>
-          <div className={FIELD_STYLES}>
+          <div className={`${FIELD_STYLES} border-transparent`}>
             <label className={LABEL_STYLES} htmlFor='zipCode'>
               Zip Code
             </label>
@@ -130,7 +137,11 @@ function EmployeesCreate() {
               id='zipCode'
             />
           </div>
-          <div className={FIELD_STYLES}>
+          <div
+            className={`${FIELD_STYLES} ${
+              errors.department ? "border-alertDark " : "border-transparent"
+            }`}
+          >
             <label className={LABEL_STYLES}>Department</label>
             <CustomSelect
               form={{ ...register("department", { required: true }) }}
