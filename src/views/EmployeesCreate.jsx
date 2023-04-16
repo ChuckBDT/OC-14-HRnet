@@ -23,8 +23,8 @@ function EmployeesCreate() {
 
   const onSubmit = (data) => {
     console.log(data);
-    // reset();
-    // triggerModalOne();
+    reset();
+    triggerModalOne();
   };
   return (
     <main className='bg-tertiary'>
@@ -158,6 +158,7 @@ function EmployeesCreate() {
             <Controller
               name='department'
               control={control}
+              rules={{ required: true }}
               defaultValue=''
               render={({ field: { onChange, onBlur, value, name } }) => (
                 <CustomSelect
@@ -172,14 +173,11 @@ function EmployeesCreate() {
               )}
             />
           </div>
-          {errors.department && console.log(errors.department)}
-
+          {Object.values(errors).length !== 0 ? (
+            <p className={ALERT_STYLES}>Please fill the required fields</p>
+          ) : null}
           <button
             type='submit'
-            // onClick={(e) => {
-            //   e.preventDefault();
-            //   triggerModalOne();
-            // }}
             className='bg-primary text-white h-16 my-6 rounded-xl'
           >
             Save
