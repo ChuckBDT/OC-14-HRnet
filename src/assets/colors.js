@@ -1,7 +1,7 @@
 const colors = {
   primary: "#2a2d32",
   primaryLight: "#898889",
-  secondary: "#fbfafe",
+  secondary: "#f8f7fb",
   tertiary: "#fffefe",
   toggleActive: "#29a1fa",
   alertLight: "#fee9e9",

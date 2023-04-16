@@ -1,12 +1,13 @@
 import React from "react";
-import CustomSelect from "../components/CustomSelect";
+import CustomSelect from "../utils/CustomSelect";
 import useModal from "../utils/useModal";
+import { Controller, useForm } from "react-hook-form";
 
 import { states } from "../data/states";
 import { departments } from "../data/departments";
-import { Controller, useForm } from "react-hook-form";
 
-const FIELD_STYLES = "bg-secondary h-fit rounded-xl py-2 px-3 border-2";
+const FIELD_STYLES =
+  "bg-secondary h-fit rounded-xl py-2 px-3 border-2 focus-within:border-primaryLight";
 const LABEL_STYLES = "text-sm text-primaryLight w-full block";
 const INPUT_STYLES = "outline-none bg-transparent text-primary";
 const ALERT_STYLES = "text-alertDark text-sm italic px-3";
@@ -76,7 +77,7 @@ function EmployeesCreate() {
               Date of Birth
             </label>
             <input
-              {...register("birthDate", { required: true })}
+              {...register("birthDate", { required: true, valueAsDate: true })}
               className={INPUT_STYLES}
               type='text'
               id='birthDate'
