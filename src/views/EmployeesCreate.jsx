@@ -4,7 +4,7 @@ import useModal from "../utils/useModal";
 
 import { states } from "../data/states";
 import { departments } from "../data/departments";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 
 const FIELD_STYLES = "bg-secondary h-fit rounded-xl py-2 px-3 border-2";
 const LABEL_STYLES = "text-sm text-primaryLight w-full block";
@@ -17,11 +17,14 @@ function EmployeesCreate() {
     register,
     handleSubmit,
     formState: { errors },
+    control,
+    reset,
   } = useForm();
 
   const onSubmit = (data) => {
     console.log(data);
-    triggerModalOne();
+    // reset();
+    // triggerModalOne();
   };
   return (
     <main className='bg-tertiary'>
@@ -88,7 +91,7 @@ function EmployeesCreate() {
               Start Date
             </label>
             <input
-              {...register("startDate", { required: true })}
+              {...register("startDate", { required: true, valueAsDate: true })}
               className={INPUT_STYLES}
               type='text'
               id='startDate'
@@ -118,12 +121,21 @@ function EmployeesCreate() {
           </div>
           <div className={`${FIELD_STYLES} border-transparent`}>
             <label className={LABEL_STYLES}>State</label>
-            <CustomSelect
-              form={{ ...register("state") }}
-              list={states}
-              placeholder='Select State'
-              inputStyle={INPUT_STYLES}
-              liStyle='hover:bg-primaryLight hover:text-white text-primary'
+            <Controller
+              name='state'
+              control={control}
+              defaultValue=''
+              render={({ field: { onChange, onBlur, value, name } }) => (
+                <CustomSelect
+                  inputStyle={INPUT_STYLES}
+                  placeholder='Select State'
+                  options={states}
+                  onChange={(selectedOption) => onChange(selectedOption)}
+                  onBlur={onBlur}
+                  value={value}
+                  name={name}
+                />
+              )}
             />
           </div>
           <div className={`${FIELD_STYLES} border-transparent`}>
@@ -143,14 +155,24 @@ function EmployeesCreate() {
             }`}
           >
             <label className={LABEL_STYLES}>Department</label>
-            <CustomSelect
-              form={{ ...register("department", { required: true }) }}
-              list={departments}
-              placeholder='Select Department'
-              inputStyle={INPUT_STYLES}
-              liStyle='hover:bg-primaryLight hover:text-white text-primary'
+            <Controller
+              name='department'
+              control={control}
+              defaultValue=''
+              render={({ field: { onChange, onBlur, value, name } }) => (
+                <CustomSelect
+                  inputStyle={INPUT_STYLES}
+                  placeholder='Select Department'
+                  options={departments}
+                  onChange={(selectedOption) => onChange(selectedOption)}
+                  onBlur={onBlur}
+                  value={value}
+                  name={name}
+                />
+              )}
             />
           </div>
+          {errors.department && console.log(errors.department)}
 
           <button
             type='submit'

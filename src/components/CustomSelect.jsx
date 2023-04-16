@@ -1,31 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-function CustomSelect({ list, placeholder, inputStyle, liStyle, form }) {
+function CustomSelect({
+  inputStyle,
+  placeholder,
+  options,
+  name,
+  onChange,
+  value,
+}) {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState("");
+  const [selected, setSelected] = useState(value);
+
+  useEffect(() => {
+    setSelected(value);
+  }, [value]);
+
+  const handleSelect = (option) => {
+    setSelected(option);
+    onChange(option);
+    setOpen(false);
+  };
 
   return (
     <>
       <input
         type='text'
-        {...form}
+        value={selected}
         onClick={() => setOpen(!open)}
         className={inputStyle}
         placeholder={placeholder}
-        defaultValue={value}
+        name={name}
         readOnly
       />
       {open && (
-        <ul className='max-h-36 overflow-y-auto pt-1'>
-          {list.map((item, i) => {
+        <ul className='max-h-36 overflow-y-auto pt-2  '>
+          {options.map((item, i) => {
             return (
               <li
                 key={i}
-                className={liStyle}
-                onClick={() => {
-                  setOpen(!open);
-                  setValue(item.name);
-                }}
+                className='hover:bg-primaryLight hover:text-white text-primary px-2'
+                onClick={() => handleSelect(item.name)}
               >
                 {item.name}
               </li>
