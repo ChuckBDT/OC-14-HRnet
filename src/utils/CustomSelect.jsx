@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 function CustomSelect({
   inputStyle,
@@ -11,9 +11,25 @@ function CustomSelect({
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(value);
 
+  const selectRef = useRef();
+
   useEffect(() => {
     setSelected(value);
   }, [value]);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (selectRef.current && !selectRef.current.contains(event.target)) {
+        setOpen(false);
+      }
+    }
+
+    window.addEventListener("click", handleClickOutside);
+
+    return () => {
+      window.removeEventListener("click", handleClickOutside);
+    };
+  }, [selectRef]);
 
   const handleSelect = (option) => {
     setSelected(option);
@@ -22,7 +38,7 @@ function CustomSelect({
   };
 
   return (
-    <>
+    <div ref={selectRef}>
       <input
         type='text'
         value={selected}
@@ -33,7 +49,7 @@ function CustomSelect({
         readOnly
       />
       {open && (
-        <ul className='max-h-36 overflow-y-auto pt-2  '>
+        <ul className='max-h-36 overflow-y-auto pt-2'>
           {options.map((item, i) => {
             return (
               <li
@@ -47,7 +63,7 @@ function CustomSelect({
           })}
         </ul>
       )}
-    </>
+    </div>
   );
 }
 
