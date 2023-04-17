@@ -46,6 +46,7 @@ function CustomSelect({
         className={inputStyle}
         placeholder={placeholder}
         name={name}
+        id={name}
         readOnly
       />
       {open && (

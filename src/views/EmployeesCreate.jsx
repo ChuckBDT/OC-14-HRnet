@@ -1,7 +1,7 @@
 import React from "react";
 import CustomSelect from "../utils/CustomSelect";
-import useModal from "../utils/useModal";
 import { Controller, useForm } from "react-hook-form";
+import useModal from "../utils/revolver-modal";
 
 import { states } from "../data/states";
 import { departments } from "../data/departments";
@@ -9,7 +9,7 @@ import { departments } from "../data/departments";
 const FIELD_STYLES =
   "bg-secondary h-fit rounded-xl py-2 px-3 border-2 focus-within:border-primaryLight";
 const LABEL_STYLES = "text-sm text-primaryLight w-full block";
-const INPUT_STYLES = "outline-none bg-transparent text-primary";
+const INPUT_STYLES = "outline-none bg-transparent text-primary w-full";
 const ALERT_STYLES = "text-alertDark text-sm italic px-3";
 
 function EmployeesCreate() {
@@ -121,7 +121,9 @@ function EmployeesCreate() {
             />
           </div>
           <div className={`${FIELD_STYLES} border-transparent`}>
-            <label className={LABEL_STYLES}>State</label>
+            <label className={LABEL_STYLES} htmlFor='state'>
+              State
+            </label>
             <Controller
               name='state'
               control={control}
@@ -155,7 +157,9 @@ function EmployeesCreate() {
               errors.department ? "border-alertDark " : "border-transparent"
             }`}
           >
-            <label className={LABEL_STYLES}>Department</label>
+            <label className={LABEL_STYLES} htmlFor='department'>
+              Department
+            </label>
             <Controller
               name='department'
               control={control}
