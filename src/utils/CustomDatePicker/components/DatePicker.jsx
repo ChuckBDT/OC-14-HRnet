@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { daysNames, monthsNames } from "../assets/names";
+import { daysNames } from "../assets/names";
 import MonthPicker from "./MonthPicker";
 import YearPicker from "./YearPicker";
 
@@ -13,8 +13,8 @@ const DatePicker = ({ todayYear, todayMonth, todayDay, handleSelect }) => {
   }
 
   return (
-    <div className='bg-primaryLight h-fit rounded-md absolute shadow-lg flex flex-col'>
-      <YearPicker todayYear={year} setYear={setYear} />
+    <div className='bg-primaryLight h-fit rounded-md absolute shadow-lg '>
+      <YearPicker todayYear={todayYear} year={year} setYear={setYear} />
       <MonthPicker
         todayMonth={month}
         setMonth={setMonth}

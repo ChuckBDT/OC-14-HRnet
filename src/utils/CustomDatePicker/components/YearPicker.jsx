@@ -1,34 +1,34 @@
 import React, { useState } from "react";
 
-const YearPicker = ({ todayYear, setYear }) => {
-  const [open, setOpen] = useState(false);
+const YearPicker = ({ todayYear, year, setYear }) => {
+  const [show, setShow] = useState(false);
   const startYear = 1920;
   const availableYears = [];
 
-  for (let year = todayYear; year >= startYear; year--) {
-    availableYears.push(year);
+  for (let y = todayYear; y >= startYear; y--) {
+    availableYears.push(y);
   }
 
-  const handleSelect = (year) => {
-    setOpen(!open);
-    setYear(year);
+  const handleSelect = (selectedYear) => {
+    setYear(selectedYear);
+    setShow(!show);
   };
 
   return (
     <>
-      <div onClick={() => setOpen(!open)}>{todayYear}</div>
-      {open && (
-        <p className='absolute h-full w-full rounded-md bg-red-500 flex flex-wrap overflow-auto scrollbar-hide'>
-          {availableYears.map((year, i) => (
-            <span
-              onClick={() => setOpen(!open)}
+      <div onClick={() => setShow(!show)}>{year}</div>
+      {show && (
+        <div className='absolute top-0 h-full w-full rounded-md bg-red-500 flex flex-wrap overflow-auto scrollbar-hide'>
+          {availableYears.map((yearListed) => (
+            <p
+              onClick={() => handleSelect(yearListed)}
               className='h-1/4 w-1/4 flex justify-center items-center hover:bg-red-200'
-              key={i}
+              key={yearListed}
             >
-              {year}
-            </span>
+              {yearListed}
+            </p>
           ))}
-        </p>
+        </div>
       )}
     </>
   );

@@ -16,19 +16,19 @@ const CustomDatePicker = ({
     setSelected(value);
   }, [value]);
 
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (selectRef.current && !selectRef.current.contains(event.target)) {
-        setOpen(false);
-      }
-    }
+  // useEffect(() => {
+  //   function handleClickOutside(event) {
+  //     if (selectRef.current && !selectRef.current.contains(event.target)) {
+  //       setOpen(false);
+  //     }
+  //   }
 
-    window.addEventListener("click", handleClickOutside);
+  //   window.addEventListener("click", handleClickOutside);
 
-    return () => {
-      window.removeEventListener("click", handleClickOutside);
-    };
-  }, [selectRef]);
+  //   return () => {
+  //     window.removeEventListener("click", handleClickOutside);
+  //   };
+  // }, [selectRef]);
 
   const handleSelect = (option) => {
     setSelected(option);
