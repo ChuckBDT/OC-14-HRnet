@@ -13,7 +13,12 @@ const DatePicker = ({ todayYear, todayMonth, todayDay, handleSelect }) => {
 
   return (
     <div className='bg-primaryLight h-fit rounded-md absolute shadow-lg'>
-      <MonthPicker todayMonth={month} setMonth={setMonth} />
+      <MonthPicker
+        todayMonth={month}
+        setMonth={setMonth}
+        todayYear={year}
+        setYear={setYear}
+      />
 
       <div className='grid grid-cols-7 justify-center justify-items-center '>
         {daysNames.map((day, i) => (
