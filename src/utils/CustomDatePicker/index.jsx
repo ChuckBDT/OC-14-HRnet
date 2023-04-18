@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import ShowDaysofMonth from "./assets/ShowDaysOfMonth";
+import DatePicker from "./components/DatePicker";
 
 const CustomDatePicker = ({
   inputStyle,
@@ -36,6 +36,11 @@ const CustomDatePicker = ({
     setOpen(false);
   };
 
+  const todayDate = new Date();
+  const todayYear = todayDate.getFullYear();
+  const todayMonth = todayDate.getMonth();
+  const todayDay = todayDate.getDate();
+
   return (
     <div ref={selectRef}>
       <input
@@ -50,7 +55,12 @@ const CustomDatePicker = ({
       />
       {open && (
         <>
-          <ShowDaysofMonth />
+          <DatePicker
+            todayYear={todayYear}
+            todayMonth={todayMonth}
+            todayDay={todayDay}
+            handleSelect={handleSelect}
+          />
         </>
       )}
     </div>

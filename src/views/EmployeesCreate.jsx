@@ -96,6 +96,7 @@ function EmployeesCreate() {
               name='startDate'
               control={control}
               defaultValue=''
+              rules={{ required: true, valueAsDate: true }}
               render={({ field: { onChange, onBlur, value, name } }) => (
                 <CustomDatePicker
                   inputStyle={INPUT_STYLES}
