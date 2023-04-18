@@ -55,7 +55,7 @@ function CustomSelect({
             return (
               <li
                 key={i}
-                className='hover:bg-primaryLight hover:text-white text-primary'
+                className='hover:bg-primaryLight hover:text-white text-primary pl-2'
                 onClick={() => handleSelect(item.name)}
               >
                 {item.name}
