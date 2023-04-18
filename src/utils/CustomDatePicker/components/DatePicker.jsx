@@ -30,7 +30,7 @@ const DatePicker = ({ todayYear, todayMonth, todayDay, handleSelect }) => {
         ))}
         {numberOfDaysInMonth.map((day, i) => (
           <p
-            className='hover:bg-secondary p-1'
+            className='hover:bg-secondary w-full h-full p-1 text-center'
             onClick={() => handleSelect(month + "/" + day + "/" + year)}
             key={i}
           >
