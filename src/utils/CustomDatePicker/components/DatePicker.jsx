@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { daysNames, monthsNames } from "../assets/names";
 import MonthPicker from "./MonthPicker";
+import YearPicker from "./YearPicker";
 
 const DatePicker = ({ todayYear, todayMonth, todayDay, handleSelect }) => {
   const [month, setMonth] = useState(todayMonth);
@@ -12,7 +13,8 @@ const DatePicker = ({ todayYear, todayMonth, todayDay, handleSelect }) => {
   }
 
   return (
-    <div className='bg-primaryLight h-fit rounded-md absolute shadow-lg'>
+    <div className='bg-primaryLight h-fit rounded-md absolute shadow-lg flex flex-col'>
+      <YearPicker todayYear={year} setYear={setYear} />
       <MonthPicker
         todayMonth={month}
         setMonth={setMonth}
@@ -20,7 +22,7 @@ const DatePicker = ({ todayYear, todayMonth, todayDay, handleSelect }) => {
         setYear={setYear}
       />
 
-      <div className='grid grid-cols-7 justify-center justify-items-center '>
+      <div className='grid grid-cols-7 justify-items-center '>
         {daysNames.map((day, i) => (
           <p className='font-bold' key={i}>
             {day}
