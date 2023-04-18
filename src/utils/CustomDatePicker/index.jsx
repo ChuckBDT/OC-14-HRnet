@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import { days } from "./assets/days";
 import ShowDaysofMonth from "./assets/ShowDaysOfMonth";
 
 const CustomDatePicker = ({
@@ -49,7 +48,11 @@ const CustomDatePicker = ({
         id={name}
         readOnly
       />
-      {open && <ShowDaysofMonth month='03' year='2023' />}
+      {open && (
+        <>
+          <ShowDaysofMonth />
+        </>
+      )}
     </div>
   );
 };

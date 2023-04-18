@@ -1,19 +1,46 @@
-const ShowDaysofMonth = ({ month, year }) => {
-  const days = new Date(year, month, 0).getDate();
-  const daysArray = [];
+import React, { useState } from "react";
+import { daysNames, monthsNames } from "./names";
 
-  for (let i = 1; i <= days; i++) {
-    daysArray.push(i);
+const ShowDaysofMonth = () => {
+  const [month, setMonth] = useState(1);
+  const [year, setYear] = useState(2023);
+
+  const numberOfDaysInMonth = [];
+  for (let i = 1; i <= new Date(year, month, 0).getDate(); i++) {
+    numberOfDaysInMonth.push(i);
   }
 
   return (
-    <div className='grid grid-cols-7'>
-      {daysArray.map((day, i) => (
-        <p onClick={() => console.log(month, day, year)} key={i}>
-          {day}
-        </p>
-      ))}
-    </div>
+    <>
+      <select
+        onChange={(e) => setMonth(e.target.value)}
+        name='Month'
+        id='month'
+        className='w-full'
+      >
+        {monthsNames.map((month, i) => (
+          <option key={i} value={(i += 1)}>
+            {month}
+          </option>
+        ))}
+      </select>
+      <div className='grid grid-cols-7 justify-center justify-items-center bg-tertiary'>
+        {daysNames.map((day, i) => (
+          <p className='font-bold' key={i}>
+            {day}
+          </p>
+        ))}
+        {numberOfDaysInMonth.map((day, i) => (
+          <p
+            className='hover:bg-secondary p-1'
+            onClick={() => console.log(month + "/" + day + "/" + year)}
+            key={i}
+          >
+            {day}
+          </p>
+        ))}
+      </div>
+    </>
   );
 };
 
