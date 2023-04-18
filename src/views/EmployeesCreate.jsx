@@ -5,6 +5,7 @@ import useModal from "../utils/revolver-modal";
 
 import { states } from "../data/states";
 import { departments } from "../data/departments";
+import CustomDatePicker from "../utils/CustomDatePicker";
 
 const FIELD_STYLES =
   "bg-secondary h-fit rounded-xl py-2 px-3 border-2 focus-within:border-primaryLight";
@@ -91,11 +92,20 @@ function EmployeesCreate() {
             <label className={LABEL_STYLES} htmlFor='startDate'>
               Start Date
             </label>
-            <input
-              {...register("startDate", { required: true, valueAsDate: true })}
-              className={INPUT_STYLES}
-              type='text'
-              id='startDate'
+            <Controller
+              name='startDate'
+              control={control}
+              defaultValue=''
+              render={({ field: { onChange, onBlur, value, name } }) => (
+                <CustomDatePicker
+                  inputStyle={INPUT_STYLES}
+                  placeholder='Select Start Date'
+                  onChange={(selectedOption) => onChange(selectedOption)}
+                  onBlur={onBlur}
+                  value={value}
+                  name={name}
+                />
+              )}
             />
           </div>
           <div className={`${FIELD_STYLES} border-transparent`}>
