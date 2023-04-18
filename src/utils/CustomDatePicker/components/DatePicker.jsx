@@ -7,11 +7,13 @@ const DatePicker = ({ todayYear, todayMonth, todayDay, handleSelect }) => {
   const [month, setMonth] = useState(todayMonth);
   const [year, setYear] = useState(todayYear);
 
+  const firstDayOfMonth = new Date(year, month, 1).getDay();
+  const blanks = Array(firstDayOfMonth).fill(null);
+
   const numberOfDaysInMonth = [];
   for (let i = 1; i <= new Date(year, month + 1, 0).getDate(); i++) {
     numberOfDaysInMonth.push(i);
   }
-  console.log(numberOfDaysInMonth, new Date(year, month, 0).getDate(), month);
 
   return (
     <div className='bg-tertiary h-fit rounded-md absolute shadow-lg '>
@@ -29,9 +31,16 @@ const DatePicker = ({ todayYear, todayMonth, todayDay, handleSelect }) => {
             {day}
           </p>
         ))}
+
+        {blanks.map((blank, i) => (
+          <p className='w-full h-full p-1 text-center' key={`blank-${i}`}>
+            {" "}
+          </p>
+        ))}
+
         {numberOfDaysInMonth.map((day, i) => (
           <p
-            className='hover:bg-secondary w-full h-full p-1 text-center'
+            className='hover:bg-secondary w-full h-full p-1 text-center cursor-pointer'
             onClick={() => handleSelect(month + "/" + day + "/" + year)}
             key={i}
           >
