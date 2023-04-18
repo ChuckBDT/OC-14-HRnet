@@ -16,7 +16,12 @@ const YearPicker = ({ todayYear, year, setYear }) => {
 
   return (
     <>
-      <div onClick={() => setShow(!show)}>{year}</div>
+      <div
+        className='text-center font-bold text-lg hover:bg-secondary hover:shadow-md'
+        onClick={() => setShow(!show)}
+      >
+        {year}
+      </div>
       {show && (
         <div className='absolute top-0 h-full w-full rounded-md bg-red-500 flex flex-wrap overflow-auto scrollbar-hide'>
           {availableYears.map((yearListed) => (

@@ -1,32 +1,32 @@
 import React from "react";
 const monthsNames = {
-  1: "January",
-  2: "February",
-  3: "March",
-  4: "April",
-  5: "May",
-  6: "June",
-  7: "July",
-  8: "August",
-  9: "September",
-  10: "October",
-  11: "November",
-  12: "December",
+  0: "January",
+  1: "February",
+  2: "March",
+  3: "April",
+  4: "May",
+  5: "June",
+  6: "July",
+  7: "August",
+  8: "September",
+  9: "October",
+  10: "November",
+  11: "December",
 };
 
 const MonthPicker = ({ todayMonth, setMonth, todayYear, setYear }) => {
   const updateMonth = (arg) => {
     if (arg == "+") {
       todayMonth = todayMonth += 1;
-      if (todayMonth > 12) {
-        todayMonth = 1;
+      if (todayMonth > 11) {
+        todayMonth = 0;
         setYear((todayYear += 1));
       }
       setMonth(todayMonth);
     } else if (arg == "-") {
       todayMonth = todayMonth -= 1;
-      if (todayMonth < 1) {
-        todayMonth = 12;
+      if (todayMonth < 0) {
+        todayMonth = 11;
         setYear((todayYear -= 1));
       }
       setMonth(todayMonth);

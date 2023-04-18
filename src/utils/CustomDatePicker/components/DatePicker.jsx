@@ -8,12 +8,13 @@ const DatePicker = ({ todayYear, todayMonth, todayDay, handleSelect }) => {
   const [year, setYear] = useState(todayYear);
 
   const numberOfDaysInMonth = [];
-  for (let i = 1; i <= new Date(year, month, 0).getDate(); i++) {
+  for (let i = 1; i <= new Date(year, month + 1, 0).getDate(); i++) {
     numberOfDaysInMonth.push(i);
   }
+  console.log(numberOfDaysInMonth, new Date(year, month, 0).getDate(), month);
 
   return (
-    <div className='bg-primaryLight h-fit rounded-md absolute shadow-lg '>
+    <div className='bg-tertiary h-fit rounded-md absolute shadow-lg '>
       <YearPicker todayYear={todayYear} year={year} setYear={setYear} />
       <MonthPicker
         todayMonth={month}
