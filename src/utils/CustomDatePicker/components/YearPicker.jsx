@@ -17,17 +17,17 @@ const YearPicker = ({ todayYear, year, setYear }) => {
   return (
     <>
       <div
-        className='text-center font-bold text-lg hover:bg-secondary hover:shadow-md'
+        className='text-center bg-tertiary rounded-md text-md h-8 flex justify-center items-center border border-primary/20 cursor-pointer hover:shadow-inner active:bg-secondary'
         onClick={() => setShow(!show)}
       >
         {year}
       </div>
       {show && (
-        <div className='absolute top-0 h-full w-full rounded-md bg-red-500 flex flex-wrap overflow-auto scrollbar-hide'>
+        <div className='absolute top-0 left-0 h-full w-full rounded-md bg-tertiary flex flex-wrap overflow-auto scrollbar-hide'>
           {availableYears.map((yearListed) => (
             <p
               onClick={() => handleSelect(yearListed)}
-              className='h-1/4 w-1/4 flex justify-center items-center hover:bg-red-200'
+              className='h-1/4 w-1/4 flex justify-center items-center  cursor-pointer active:bg-secondary hover:shadow-inner hover:border hover:border-primary/10'
               key={yearListed}
             >
               {yearListed}

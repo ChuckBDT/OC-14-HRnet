@@ -16,7 +16,7 @@ const DatePicker = ({ todayYear, todayMonth, todayDay, handleSelect }) => {
   }
 
   return (
-    <div className='bg-tertiary h-fit rounded-md absolute shadow-lg '>
+    <div className='h-fit rounded-md absolute shadow-lg p-3 bg-tertiary border border-primary/20 '>
       <YearPicker todayYear={todayYear} year={year} setYear={setYear} />
       <MonthPicker
         todayMonth={month}
@@ -25,9 +25,12 @@ const DatePicker = ({ todayYear, todayMonth, todayDay, handleSelect }) => {
         setYear={setYear}
       />
 
-      <div className='grid grid-cols-7 justify-items-center '>
+      <div className=' grid grid-cols-7 justify-items-center '>
         {daysNames.map((day, i) => (
-          <p className='font-bold' key={i}>
+          <p
+            className='text-xs text-primaryLight bg-tertiary w-8 text-center h-8 flex justify-center items-center'
+            key={i}
+          >
             {day}
           </p>
         ))}
@@ -40,7 +43,7 @@ const DatePicker = ({ todayYear, todayMonth, todayDay, handleSelect }) => {
 
         {numberOfDaysInMonth.map((day, i) => (
           <p
-            className='hover:bg-secondary w-full h-full p-1 text-center cursor-pointer hover:shadow-lg'
+            className='bg-tertiary rounded-md border border-transparent active:bg-secondary hover:shadow-inner  hover:border-primary/10  w-full h-full p-1 text-center text-primary text-sm cursor-pointer '
             onClick={() => handleSelect(month + "/" + day + "/" + year)}
             key={i}
           >
