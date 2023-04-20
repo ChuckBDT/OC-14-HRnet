@@ -12,11 +12,15 @@ const DatePicker = ({ todayYear, todayMonth, todayDay, handleSelect }) => {
 
   const numberOfDaysInMonth = [];
   for (let i = 1; i <= new Date(year, month + 1, 0).getDate(); i++) {
-    numberOfDaysInMonth.push(i);
+    if (i <= 9) {
+      numberOfDaysInMonth.push("0" + i);
+    } else {
+      numberOfDaysInMonth.push(String(i));
+    }
   }
 
   return (
-    <div className='h-fit rounded-md absolute shadow-lg p-3 bg-tertiary border border-primary/20 '>
+    <div className='h-fit rounded-md absolute shadow-lg p-3 bg-tertiary border border-primary/20 select-none'>
       <YearPicker todayYear={todayYear} year={year} setYear={setYear} />
       <MonthPicker
         todayMonth={month}
@@ -44,7 +48,15 @@ const DatePicker = ({ todayYear, todayMonth, todayDay, handleSelect }) => {
         {numberOfDaysInMonth.map((day, i) => (
           <p
             className='bg-tertiary rounded-md border border-transparent active:bg-secondary hover:shadow-inner  hover:border-primary/10  w-full h-full p-1 text-center text-primary text-sm cursor-pointer '
-            onClick={() => handleSelect(month + "/" + day + "/" + year)}
+            onClick={() =>
+              handleSelect(
+                day +
+                  "/" +
+                  (month <= 9 ? "0" + (month + 1) : month + 1) +
+                  "/" +
+                  year
+              )
+            }
             key={i}
           >
             {day}
