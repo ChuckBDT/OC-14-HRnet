@@ -7,6 +7,7 @@ const CustomDatePicker = ({
   name,
   onChange,
   value,
+  major,
 }) => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(value);
@@ -36,11 +37,6 @@ const CustomDatePicker = ({
     setOpen(false);
   };
 
-  const todayDate = new Date();
-  const todayYear = todayDate.getFullYear();
-  const todayMonth = todayDate.getMonth();
-  const todayDay = todayDate.getDate();
-
   return (
     <div ref={selectRef}>
       <input
@@ -55,12 +51,7 @@ const CustomDatePicker = ({
       />
       {open && (
         <>
-          <DatePicker
-            todayYear={todayYear}
-            todayMonth={todayMonth}
-            todayDay={todayDay}
-            handleSelect={handleSelect}
-          />
+          <DatePicker major={major} handleSelect={handleSelect} />
         </>
       )}
     </div>

@@ -3,16 +3,18 @@ import { daysNames } from "../assets/names";
 import MonthPicker from "./MonthPicker";
 import YearPicker from "./YearPicker";
 
-const DatePicker = ({ todayYear, todayMonth, todayDay, handleSelect }) => {
+const DatePicker = ({ handleSelect, major }) => {
+  const todayDate = new Date();
+  const todayYear = todayDate.getFullYear();
+  const todayMonth = todayDate.getMonth();
+  const todayDay = todayDate.getDate();
+
+  const majorityYear = major ? todayYear - 18 : todayYear;
   const [month, setMonth] = useState(todayMonth);
-  const [year, setYear] = useState(todayYear);
+  const [year, setYear] = useState(majorityYear);
 
-  console.log(todayMonth);
-  console.log(month);
-  console.log(todayDay);
-
-  const firstDayOfMonth = new Date(year, month, 1).getDay();
-  const blanks = Array(firstDayOfMonth).fill(null);
+  const firstDaysOfMonth = new Date(year, month, 1).getDay();
+  const blanks = Array(firstDaysOfMonth).fill(null);
 
   const numberOfDaysInMonth = [];
   for (let i = 1; i <= new Date(year, month + 1, 0).getDate(); i++) {
@@ -25,7 +27,7 @@ const DatePicker = ({ todayYear, todayMonth, todayDay, handleSelect }) => {
 
   return (
     <div className='h-fit rounded-md absolute shadow-lg p-3 bg-tertiary border border-primary/20 select-none'>
-      <YearPicker todayYear={todayYear} year={year} setYear={setYear} />
+      <YearPicker todayYear={majorityYear} year={year} setYear={setYear} />
       <MonthPicker
         todayMonth={month}
         setMonth={setMonth}
@@ -52,7 +54,7 @@ const DatePicker = ({ todayYear, todayMonth, todayDay, handleSelect }) => {
         {numberOfDaysInMonth.map((day, i) => (
           <p
             className={`${
-              (todayMonth == month) & (day == todayDay)
+              (todayMonth == month) & (todayDay == day) & (todayYear == year)
                 ? "bg-logoLight/25"
                 : "bg-tertiary"
             }  rounded-md border border-transparent active:bg-secondary hover:shadow-inner  hover:border-primary/10  w-full h-full p-1 text-center text-primary text-sm cursor-pointer`}

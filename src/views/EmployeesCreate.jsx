@@ -77,11 +77,22 @@ function EmployeesCreate() {
             <label className={LABEL_STYLES} htmlFor='birthDate'>
               Date of Birth
             </label>
-            <input
-              {...register("birthDate", { required: true, valueAsDate: true })}
-              className={INPUT_STYLES}
-              type='text'
-              id='birthDate'
+            <Controller
+              name='birthDate'
+              control={control}
+              defaultValue=''
+              rules={{ required: true, valueAsDate: true }}
+              render={({ field: { onChange, onBlur, value, name } }) => (
+                <CustomDatePicker
+                  inputStyle={INPUT_STYLES}
+                  placeholder='Select Birth Date'
+                  onChange={(selectedOption) => onChange(selectedOption)}
+                  onBlur={onBlur}
+                  value={value}
+                  name={name}
+                  major={true}
+                />
+              )}
             />
           </div>
           <div

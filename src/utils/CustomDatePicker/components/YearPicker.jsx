@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 
-const YearPicker = ({ todayYear, year, setYear }) => {
+const YearPicker = ({ todayYear, year, setYear, major }) => {
   const [show, setShow] = useState(false);
   const startYear = 1920;
+  // const endYear = major ? todayYear - 18 : todayYear;
   const availableYears = [];
 
   for (let y = todayYear; y >= startYear; y--) {
