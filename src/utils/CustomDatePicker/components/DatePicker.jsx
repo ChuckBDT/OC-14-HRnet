@@ -7,6 +7,10 @@ const DatePicker = ({ todayYear, todayMonth, todayDay, handleSelect }) => {
   const [month, setMonth] = useState(todayMonth);
   const [year, setYear] = useState(todayYear);
 
+  console.log(todayMonth);
+  console.log(month);
+  console.log(todayDay);
+
   const firstDayOfMonth = new Date(year, month, 1).getDay();
   const blanks = Array(firstDayOfMonth).fill(null);
 
@@ -47,7 +51,11 @@ const DatePicker = ({ todayYear, todayMonth, todayDay, handleSelect }) => {
 
         {numberOfDaysInMonth.map((day, i) => (
           <p
-            className='bg-tertiary rounded-md border border-transparent active:bg-secondary hover:shadow-inner  hover:border-primary/10  w-full h-full p-1 text-center text-primary text-sm cursor-pointer '
+            className={`${
+              (todayMonth == month) & (day == todayDay)
+                ? "bg-logoLight/25"
+                : "bg-tertiary"
+            }  rounded-md border border-transparent active:bg-secondary hover:shadow-inner  hover:border-primary/10  w-full h-full p-1 text-center text-primary text-sm cursor-pointer`}
             onClick={() =>
               handleSelect(
                 day +
