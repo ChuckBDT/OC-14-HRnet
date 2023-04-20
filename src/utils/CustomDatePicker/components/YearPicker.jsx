@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 
-const YearPicker = ({ todayYear, year, setYear, major }) => {
+const YearPicker = ({ todayYear, year, setYear }) => {
   const [show, setShow] = useState(false);
   const startYear = 1920;
-  // const endYear = major ? todayYear - 18 : todayYear;
   const availableYears = [];
 
   for (let y = todayYear; y >= startYear; y--) {
@@ -24,7 +23,10 @@ const YearPicker = ({ todayYear, year, setYear, major }) => {
         {year}
       </div>
       {show && (
-        <div className='absolute top-0 left-0 h-full w-full rounded-md bg-tertiary flex flex-wrap overflow-auto scrollbar-hide'>
+        <div
+          id='YearPicker'
+          className='absolute top-0 left-0 h-full w-full rounded-md bg-tertiary flex flex-wrap overflow-auto scrollbar-hide'
+        >
           {availableYears.map((yearListed) => (
             <p
               onClick={() => handleSelect(yearListed)}

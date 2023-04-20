@@ -19,7 +19,9 @@ const CustomDatePicker = ({
 
   // useEffect(() => {
   //   function handleClickOutside(event) {
-  //     if (selectRef.current && !selectRef.current.contains(event.target)) {
+  //     console.log(event.composedPath().toString());
+  //     console.log(event.composedPath().includes("div#CustomDatePicker"));
+  //     if (event.composedPath().includes("div#CustomDatePicker")) {
   //       setOpen(false);
   //     }
   //   }
@@ -38,7 +40,7 @@ const CustomDatePicker = ({
   };
 
   return (
-    <div ref={selectRef}>
+    <div ref={selectRef} id='CustomDatePicker'>
       <input
         type='text'
         value={selected}
@@ -49,11 +51,7 @@ const CustomDatePicker = ({
         id={name}
         readOnly
       />
-      {open && (
-        <>
-          <DatePicker major={major} handleSelect={handleSelect} />
-        </>
-      )}
+      {open && <DatePicker major={major} handleSelect={handleSelect} />}
     </div>
   );
 };

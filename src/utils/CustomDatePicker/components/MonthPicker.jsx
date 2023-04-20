@@ -35,7 +35,10 @@ const MonthPicker = ({ todayMonth, setMonth, todayYear, setYear }) => {
   };
 
   return (
-    <div className='w-full flex justify-between items-center bg-tertiary h-10'>
+    <div
+      id='MonthPicker'
+      className='w-full flex justify-between items-center bg-tertiary h-10'
+    >
       <div
         onClick={() => {
           updateMonth("-");

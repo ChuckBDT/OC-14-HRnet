@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { daysNames } from "../assets/names";
 import MonthPicker from "./MonthPicker";
 import YearPicker from "./YearPicker";
@@ -26,7 +26,10 @@ const DatePicker = ({ handleSelect, major }) => {
   }
 
   return (
-    <div className='h-fit rounded-md absolute shadow-lg p-3 bg-tertiary border border-primary/20 select-none'>
+    <div
+      id='DatePicker'
+      className='h-fit rounded-md absolute shadow-lg p-3 bg-tertiary border border-primary/20 select-none'
+    >
       <YearPicker todayYear={majorityYear} year={year} setYear={setYear} />
       <MonthPicker
         todayMonth={month}
@@ -62,7 +65,7 @@ const DatePicker = ({ handleSelect, major }) => {
               handleSelect(
                 day +
                   "/" +
-                  (month <= 9 ? "0" + (month + 1) : month + 1) +
+                  (month <= 8 ? "0" + (month + 1) : month + 1) +
                   "/" +
                   year
               )

@@ -2,10 +2,10 @@ import React from "react";
 import CustomSelect from "../utils/CustomSelect";
 import { Controller, useForm } from "react-hook-form";
 import useModal from "../utils/revolver-modal";
+import CustomDatePicker from "../utils/CustomDatePicker";
 
 import { states } from "../data/states";
 import { departments } from "../data/departments";
-import CustomDatePicker from "../utils/CustomDatePicker";
 
 const FIELD_STYLES =
   "bg-secondary h-fit rounded-xl py-2 px-3 border-2 focus-within:border-primaryLight";
