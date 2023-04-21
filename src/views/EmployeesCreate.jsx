@@ -22,7 +22,6 @@ const ALERT_STYLES = "text-alertDark text-sm italic px-3";
  * @component
  */
 function EmployeesCreate() {
-  const employees = useStore((state) => state.employees);
   const addEmployee = useStore((state) => state.addEmployee);
 
   const [setModalOne, triggerModalOne] = useModal();
@@ -36,15 +35,15 @@ function EmployeesCreate() {
 
   const onSubmit = (data) => {
     addEmployee(data);
-    reset();
-    triggerModalOne();
+    // Reset off during development
+    // reset();
+    // triggerModalOne();
   };
   return (
-    <main className='bg-tertiary'>
+    <main className='bg-tertiary mb-24'>
       <h1 className='text-center py-8 text-2xl font-bold font-copperplate uppercase text-primary'>
         Create employee
       </h1>
-      <button onClick={() => console.log(employees)}>FOR TEST PURPOSES</button>
       <div className='flex justify-center items-center my-2'>
         <form
           onSubmit={handleSubmit(onSubmit)}

@@ -1,21 +1,16 @@
 import React from "react";
 import useStore from "../store/store";
+import CustomDataTable from "../utils/CustomDataTable";
 
 function EmployeesList() {
-  const employees = useStore((state) => state.employees);
-  console.log(employees);
+  const data = useStore((state) => state.employees);
+
   return (
-    <main className='bg-tertiary'>
-      <h1 className='text-center py-8 text-2xl font-bold uppercase text-primary'>
+    <main className='bg-tertiary flex flex-col justify-center items-center mb-32'>
+      <h1 className='text-center py-8 text-2xl font-bold font-copperplate uppercase text-primary'>
         Employee's List
       </h1>
-      <button onClick={() => console.log(employees)}>FOR TEST PURPOSES</button>
-
-      <ul>
-        {employees.map((employee, index) => (
-          <li key={index}>{employee.firstName}</li>
-        ))}
-      </ul>
+      <CustomDataTable data={data} />
     </main>
   );
 }
