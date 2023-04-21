@@ -1,5 +1,13 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 
+/**
+ * A component that allows the user to select a year from a list of available years.
+ * @param {number} props.todayYear - The current year.
+ * @param {number} props.year - The selected year.
+ * @param {function} props.setYear - A function to update the selected year.
+ * @returns {JSX.Element} - The YearPicker component.
+ */
 const YearPicker = ({ todayYear, year, setYear }) => {
   const [show, setShow] = useState(false);
   const startYear = 1920;
@@ -9,6 +17,11 @@ const YearPicker = ({ todayYear, year, setYear }) => {
     availableYears.push(y);
   }
 
+  /**
+   * Updates the selected year and toggles the year picker dropdown.
+   * @param {number} selectedYear - The year selected by the user.
+   * @returns {void}
+   */
   const handleSelect = (selectedYear) => {
     setYear(selectedYear);
     setShow(!show);
@@ -40,6 +53,12 @@ const YearPicker = ({ todayYear, year, setYear }) => {
       )}
     </>
   );
+};
+
+YearPicker.propTypes = {
+  todayYear: PropTypes.number.isRequired,
+  year: PropTypes.number.isRequired,
+  setYear: PropTypes.func.isRequired,
 };
 
 export default YearPicker;

@@ -13,6 +13,13 @@ const LABEL_STYLES = "text-sm text-primaryLight w-full block";
 const INPUT_STYLES = "outline-none bg-transparent text-primary w-full";
 const ALERT_STYLES = "text-alertDark text-sm italic px-3";
 
+/**
+ * A form component for creating new employees, with various fields.
+ * Uses react-hook-form for form validation and management,
+ * and also includes custom select and date picker components.
+ *
+ * @component
+ */
 function EmployeesCreate() {
   const [setModalOne, triggerModalOne] = useModal();
   const {

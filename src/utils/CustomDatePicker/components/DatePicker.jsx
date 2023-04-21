@@ -1,8 +1,16 @@
 import React, { useState, useRef } from "react";
+import PropTypes from "prop-types";
+
 import { daysNames } from "../assets/names";
 import MonthPicker from "./MonthPicker";
 import YearPicker from "./YearPicker";
 
+/**
+ * A component for displaying a date picker.
+ * @param {Function} props.handleSelect - The callback function called when a date is selected.
+ * @param {boolean} props.major - A flag to indicate whether the major option should be used.
+ * @returns {JSX.Element} - A date picker component.
+ */
 const DatePicker = ({ handleSelect, major }) => {
   const todayDate = new Date();
   const todayYear = todayDate.getFullYear();
@@ -78,6 +86,11 @@ const DatePicker = ({ handleSelect, major }) => {
       </div>
     </div>
   );
+};
+
+DatePicker.propTypes = {
+  handleSelect: PropTypes.func.isRequired,
+  major: PropTypes.bool,
 };
 
 export default DatePicker;

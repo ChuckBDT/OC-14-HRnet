@@ -1,5 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
+import PropTypes from "prop-types";
 
+/**
+ * A custom select component that allows users to select an option from a dropdown list.
+ *
+ * @param {Object} props - The component props.
+ * @param {string} props.inputStyle - The CSS class to style the input element.
+ * @param {string} props.placeholder - The placeholder text to display in the input element.
+ * @param {Array} props.options - An array of options to display in the dropdown list.
+ * @param {string} props.name - The name attribute of the input element.
+ * @param {function} props.onChange - The callback function to call when the selected option changes.
+ * @param {string} props.value - The value of the currently selected option.
+ *
+ * @returns {JSX.Element} The CustomSelect component.
+ */
 function CustomSelect({
   inputStyle,
   placeholder,
@@ -67,5 +81,18 @@ function CustomSelect({
     </div>
   );
 }
+
+CustomSelect.propTypes = {
+  inputStyle: PropTypes.string,
+  placeholder: PropTypes.string,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+};
 
 export default CustomSelect;

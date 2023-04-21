@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const monthsNames = {
   0: "January",
@@ -15,6 +16,13 @@ const monthsNames = {
   11: "December",
 };
 
+/**
+ * Component for picking a month in a calendar.
+ * @param {number} props.todayMonth - The current month (0-11).
+ * @param {function} props.setMonth - A function to update the selected month.
+ * @param {number} props.todayYear - The current year.
+ * @param {function} props.setYear - A function to update the selected year.
+ */
 const MonthPicker = ({ todayMonth, setMonth, todayYear, setYear }) => {
   const updateMonth = (arg) => {
     if (arg == "+") {
@@ -82,6 +90,13 @@ const MonthPicker = ({ todayMonth, setMonth, todayYear, setYear }) => {
       </div>
     </div>
   );
+};
+
+MonthPicker.propTypes = {
+  todayMonth: PropTypes.number.isRequired,
+  setMonth: PropTypes.func.isRequired,
+  todayYear: PropTypes.number.isRequired,
+  setYear: PropTypes.func.isRequired,
 };
 
 export default MonthPicker;
