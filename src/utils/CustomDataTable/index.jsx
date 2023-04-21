@@ -1,17 +1,25 @@
 import React, { useMemo, useState } from "react";
-import CustomSelect from "../CustomSelect";
 
 const CustomDataTable = ({ data }) => {
   const [displayedQt, setQt] = useState(10);
   const [filter, setFilter] = useState("");
+  const [test, setTest] = useState([1, 10]);
 
-  const dataToDisplay = useMemo(() => {
-    return data;
-  });
-
-  const dataFiltered = dataToDisplay.filter((data) =>
+  const dataFiltered = data.filter((data) =>
     JSON.stringify(data).toLowerCase().includes(filter.toLowerCase())
   );
+
+  const indexArray = Math.floor(data.length / displayedQt);
+  const arr = Array.from({ length: indexArray }, (_, index) => index + 1);
+  console.log(arr);
+
+  const getNumbers = (endNb) => {
+    if (endNb === 1) {
+      setTest([endNb, endNb * displayedQt]);
+    } else {
+      setTest([(endNb - 1) * displayedQt + 1, endNb * displayedQt]);
+    }
+  };
 
   return (
     <div className='w-[80%]'>
@@ -22,6 +30,7 @@ const CustomDataTable = ({ data }) => {
           <option value='50'>50</option>
         </select>
         <input
+          placeholder='Search ...'
           onChange={(e) => {
             setFilter(e.target.value);
           }}
@@ -44,7 +53,7 @@ const CustomDataTable = ({ data }) => {
           </thead>
           <tbody className='bg-tertiary'>
             {dataFiltered.map((data, index) =>
-              index < displayedQt ? (
+              index < test[1] && index > test[0] ? (
                 <tr
                   className='h-10 even:bg-secondary/75 text-primary text-sm'
                   key={index}
@@ -63,6 +72,16 @@ const CustomDataTable = ({ data }) => {
             )}
           </tbody>
         </table>
+      </div>
+      <div>
+        {arr.map((nb) => (
+          <button
+            onClick={() => getNumbers(nb)}
+            className='bg-secondary h-6 w-6 m-4'
+          >
+            {nb}
+          </button>
+        ))}
       </div>
     </div>
   );
