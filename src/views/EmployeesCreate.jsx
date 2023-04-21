@@ -3,6 +3,7 @@ import CustomSelect from "../utils/CustomSelect";
 import { Controller, useForm } from "react-hook-form";
 import useModal from "../utils/revolver-modal";
 import CustomDatePicker from "../utils/CustomDatePicker";
+import useStore from "../store/store";
 
 import { states } from "../data/states";
 import { departments } from "../data/departments";
@@ -21,6 +22,9 @@ const ALERT_STYLES = "text-alertDark text-sm italic px-3";
  * @component
  */
 function EmployeesCreate() {
+  const employees = useStore((state) => state.employees);
+  const addEmployee = useStore((state) => state.addEmployee);
+
   const [setModalOne, triggerModalOne] = useModal();
   const {
     register,
@@ -31,7 +35,7 @@ function EmployeesCreate() {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    addEmployee(data);
     reset();
     triggerModalOne();
   };
@@ -40,6 +44,7 @@ function EmployeesCreate() {
       <h1 className='text-center py-8 text-2xl font-bold font-copperplate uppercase text-primary'>
         Create employee
       </h1>
+      <button onClick={() => console.log(employees)}>FOR TEST PURPOSES</button>
       <div className='flex justify-center items-center my-2'>
         <form
           onSubmit={handleSubmit(onSubmit)}
