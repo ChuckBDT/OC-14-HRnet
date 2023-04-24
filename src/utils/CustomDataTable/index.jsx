@@ -1,30 +1,48 @@
 import React, { useMemo, useState } from "react";
 
 const CustomDataTable = ({ data }) => {
-  const [displayedQt, setQt] = useState(10);
+  // Filtering Datas
   const [filter, setFilter] = useState("");
-  const [test, setTest] = useState([1, 10]);
-
   const dataFiltered = data.filter((data) =>
     JSON.stringify(data).toLowerCase().includes(filter.toLowerCase())
   );
+  // Data filtering
 
-  const indexArray = Math.floor(data.length / displayedQt);
-  const arr = Array.from({ length: indexArray }, (_, index) => index + 1);
-  console.log(arr);
+  const [displayedQt, setQt] = useState(10);
+  const [pageActive, setPageActive] = useState(1);
 
-  const getNumbers = (endNb) => {
-    if (endNb === 1) {
-      setTest([endNb, endNb * displayedQt]);
+  const getNumbers = () => {
+    if (pageActive === 1) {
+      return [0, displayedQt];
     } else {
-      setTest([(endNb - 1) * displayedQt + 1, endNb * displayedQt]);
+      return [(pageActive - 1) * displayedQt, pageActive * displayedQt];
     }
   };
+
+  const dataRefsToDisplay = getNumbers();
+
+  const listToDisplayArray = () => {
+    let floor = Math.floor(data.length / displayedQt);
+    const modulo = data.length % displayedQt;
+    if (modulo !== 0) {
+      floor += 1;
+    }
+    return Array.from({ length: floor }, (_, index) => index + 1);
+  };
+
+  console.log(dataFiltered, dataRefsToDisplay);
 
   return (
     <div className='w-[80%]'>
       <div className='w-full flex items-center justify-between'>
-        <select onChange={(e) => setQt(e.target.value)} name='' id=''>
+        <select
+          onChange={(e) => {
+            setQt(parseInt(e.target.value));
+            setPageActive(1);
+          }}
+          name=''
+          id=''
+        >
           <option value='10'>10</option>
           <option value='25'>25</option>
           <option value='50'>50</option>
@@ -33,6 +51,7 @@ const CustomDataTable = ({ data }) => {
           placeholder='Search ...'
           onChange={(e) => {
             setFilter(e.target.value);
+            setPageActive(1);
           }}
         ></input>
       </div>
@@ -52,8 +71,9 @@ const CustomDataTable = ({ data }) => {
             </tr>
           </thead>
           <tbody className='bg-tertiary'>
-            {dataFiltered.map((data, index) =>
-              index < test[1] && index > test[0] ? (
+            {dataFiltered
+              .slice(dataRefsToDisplay[0], dataRefsToDisplay[1])
+              .map((data, index) => (
                 <tr
                   className='h-10 even:bg-secondary/75 text-primary text-sm'
                   key={index}
@@ -68,15 +88,15 @@ const CustomDataTable = ({ data }) => {
                   <td className='pl-2'>{data.state}</td>
                   <td className='pl-2'>{data.zipCode}</td>
                 </tr>
-              ) : null
-            )}
+              ))}
           </tbody>
         </table>
       </div>
       <div>
-        {arr.map((nb) => (
+        {listToDisplayArray().map((nb, i) => (
           <button
-            onClick={() => getNumbers(nb)}
+            key={i}
+            onClick={() => setPageActive(nb)}
             className='bg-secondary h-6 w-6 m-4'
           >
             {nb}
