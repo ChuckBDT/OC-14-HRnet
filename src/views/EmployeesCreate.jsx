@@ -35,12 +35,11 @@ function EmployeesCreate() {
 
   const onSubmit = (data) => {
     addEmployee(data);
-    // Reset off during development
-    // reset();
-    // triggerModalOne();
+    reset();
+    triggerModalOne();
   };
   return (
-    <main className='bg-tertiary mb-24'>
+    <main className='bg-tertiary mb-32 lg:mb-0 lg:ml-24'>
       <h1 className='text-center py-8 text-2xl font-bold font-copperplate uppercase text-primary'>
         Create employee
       </h1>
