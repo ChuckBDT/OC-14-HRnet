@@ -1,16 +1,17 @@
 import React, { useMemo, useState } from "react";
 
 const CustomDataTable = ({ data }) => {
-  // Filtering Datas
   const [filter, setFilter] = useState("");
-  const dataFiltered = data.filter((data) =>
-    JSON.stringify(data).toLowerCase().includes(filter.toLowerCase())
-  );
-  // Data filtering
-
   const [displayedQt, setQt] = useState(10);
   const [pageActive, setPageActive] = useState(1);
 
+  // Filtering data from props with input's content
+  const dataFiltered = data.filter((data) =>
+    JSON.stringify(data).toLowerCase().includes(filter.toLowerCase())
+  );
+
+  // Calculating the indexes of data to display depending on
+  // the active page
   const getNumbers = () => {
     if (pageActive === 1) {
       return [0, displayedQt];
@@ -21,16 +22,16 @@ const CustomDataTable = ({ data }) => {
 
   const dataRefsToDisplay = getNumbers();
 
-  const listToDisplayArray = () => {
-    let floor = Math.floor(data.length / displayedQt);
-    const modulo = data.length % displayedQt;
+  // Calculating the pagination needed to display the data
+  // based on the select limit
+  const pagination = () => {
+    let floor = Math.floor(dataFiltered.length / displayedQt);
+    const modulo = dataFiltered.length % displayedQt;
     if (modulo !== 0) {
       floor += 1;
     }
     return Array.from({ length: floor }, (_, index) => index + 1);
   };
-
-  console.log(dataFiltered, dataRefsToDisplay);
 
   return (
     <div className='w-[80%]'>
@@ -93,7 +94,7 @@ const CustomDataTable = ({ data }) => {
         </table>
       </div>
       <div>
-        {listToDisplayArray().map((nb, i) => (
+        {pagination().map((nb, i) => (
           <button
             key={i}
             onClick={() => setPageActive(nb)}
