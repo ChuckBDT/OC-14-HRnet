@@ -34,7 +34,7 @@ const CustomDataTable = ({ data }) => {
   };
 
   return (
-    <div className='w-[80%]'>
+    <div className='w-[80%] text-primary'>
       <div className='w-full flex items-center justify-between'>
         <select
           onChange={(e) => {
@@ -56,7 +56,7 @@ const CustomDataTable = ({ data }) => {
           }}
         ></input>
       </div>
-      <div className=' rounded-lg shadow overflow-auto'>
+      <div className=' rounded-lg shadow overflow-auto '>
         <table className='w-full'>
           <thead className='bg-secondary text-primaryLight  h-12 '>
             <tr className=' text-left'>

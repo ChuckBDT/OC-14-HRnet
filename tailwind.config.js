@@ -10,7 +10,10 @@ export default {
         copperplate: ["copperplate"],
       },
       colors: colors,
-      animation: { logoSpin: "logoSpin 20s linear infinite" },
+      animation: {
+        logoSpin: "logoSpin 20s linear infinite",
+        logoNavSpin: "logoSpin 60s linear infinite",
+      },
       keyframes: {
         logoSpin: {
           "0%": { transform: "rotate(0deg)" },
