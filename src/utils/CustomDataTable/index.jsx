@@ -32,7 +32,7 @@ const CustomDataTable = ({ data }) => {
     }
     return Array.from({ length: floor }, (_, index) => index + 1);
   };
-
+  const options = [10, 25, 50];
   return (
     <div className='w-[80%] text-primary'>
       <div className='w-full flex items-center justify-between mb-2 '>
@@ -49,7 +49,7 @@ const CustomDataTable = ({ data }) => {
           <option value='50'>50</option>
         </select>
         <input
-          className='bg-secondary rounded-lg p-2 shadow '
+          className='bg-secondary rounded-lg p-2 shadow outline-none'
           placeholder='Search ...'
           onChange={(e) => {
             setFilter(e.target.value);
@@ -147,18 +147,23 @@ const CustomDataTable = ({ data }) => {
           </tbody>
         </table>
       </div>
-      <div className='flex justify-end my-2 gap-x-2'>
-        {pagination().map((nb, i) => (
-          <button
-            key={i}
-            onClick={() => setPageActive(nb)}
-            className={`${
-              nb == pageActive ? "bg-primary/70 text-secondary" : ""
-            } bg-secondary hover:bg-primaryLight text-primaryLight hover:text-secondary active:text-primaryLight active:bg-secondary shadow h-6 w-6 p-4 flex justify-center items-center rounded`}
-          >
-            {nb}
-          </button>
-        ))}
+      <div className='flex justify-between my-2 '>
+        <div className='text-primary italic text-sm'>
+          {dataFiltered.length} employees
+        </div>
+        <div className='flex gap-x-2'>
+          {pagination().map((nb, i) => (
+            <button
+              key={i}
+              onClick={() => setPageActive(nb)}
+              className={`${
+                nb == pageActive ? "bg-primary/70 text-secondary" : ""
+              } bg-secondary hover:bg-primaryLight text-primaryLight hover:text-secondary active:text-primaryLight active:bg-secondary shadow h-6 w-6 p-4 flex justify-center items-center rounded`}
+            >
+              {nb}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );
