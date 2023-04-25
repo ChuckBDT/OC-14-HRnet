@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from "react";
+import CustomSimpleSelect from "../CustomSimpleSelect";
 
 const CustomDataTable = ({ data }) => {
   const [filter, setFilter] = useState("");
@@ -33,6 +34,10 @@ const CustomDataTable = ({ data }) => {
     return Array.from({ length: floor }, (_, index) => index + 1);
   };
   const options = [10, 25, 50];
+  const handleSelectChoice = (el) => {
+    setQt(el);
+    setPageActive(1);
+  };
   return (
     <div className='w-[80%] text-primary'>
       <div className='w-full flex items-center justify-between mb-2 '>
@@ -48,6 +53,7 @@ const CustomDataTable = ({ data }) => {
           <option value='25'>25</option>
           <option value='50'>50</option>
         </select>
+        <CustomSimpleSelect options={options} handle={handleSelectChoice} />
         <input
           className='bg-secondary rounded-lg p-2 shadow outline-none'
           placeholder='Search ...'
