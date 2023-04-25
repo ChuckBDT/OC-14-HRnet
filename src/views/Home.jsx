@@ -4,8 +4,8 @@ import Logo from "../assets/logo.svg";
 
 function Home() {
   return (
-    <main className='flex-1 lg:ml-24'>
-      <div className='bg-tertiary flex flex-col lg:flex-row h-3/4 gap-y-8 lg:gap-y-0 lg:gap-x-16 justify-center items-center '>
+    <main className='flex-1 mt-24 sm:mt-12 lg:ml-24'>
+      <div className='bg-tertiary flex flex-col l lg:flex-row h-3/4 gap-y-8 lg:gap-y-0 lg:gap-x-16 justify-center items-center '>
         <div>
           <h2 className='text-3xl'>Welcome on</h2>
           <span className='font-copperplate text-7xl lg:text-8xl'>HRnet</span>
