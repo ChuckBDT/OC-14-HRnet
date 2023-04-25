@@ -90,29 +90,33 @@ const CustomDataTable = ({ data }) => {
                   className='h-10 even:bg-secondary/75 text-primary text-sm'
                   key={index}
                 >
-                  <td className='pl-2 py-2 text-lg inline-block sm:hidden'>
-                    <input type='checkbox' className='peer mr-2 hidden' />
-                    <svg
-                      stroke='currentColor'
-                      className='cursor-pointer'
-                      onClick={(e) => {
-                        if (e.target.previousSibling.checked) {
-                          e.target.previousSibling.checked = false;
-                        } else {
-                          e.target.previousSibling.checked = true;
-                        }
-                      }}
-                      fill='currentColor'
-                      strokeWidth='0'
-                      viewBox='0 0 1024 1024'
-                      height='1.2em'
-                      width='1.2em'
-                      xmlns='http://www.w3.org/2000/svg'
+                  <td className='pl-2 py-2  sm:hidden'>
+                    <input
+                      type='checkbox'
+                      id={`display-data-${index}`}
+                      className='peer mr-2 hidden'
+                    />
+                    <label
+                      className='flex items-center'
+                      htmlFor={`display-data-${index}`}
                     >
-                      <path d='M942.2 486.2C847.4 286.5 704.1 186 512 186c-192.2 0-335.4 100.5-430.2 300.3a60.3 60.3 0 0 0 0 51.5C176.6 737.5 319.9 838 512 838c192.2 0 335.4-100.5 430.2-300.3 7.7-16.2 7.7-35 0-51.5zM512 766c-161.3 0-279.4-81.8-362.7-254C232.6 339.8 350.7 258 512 258c161.3 0 279.4 81.8 362.7 254C791.5 684.2 673.4 766 512 766zm-4-430c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm0 288c-61.9 0-112-50.1-112-112s50.1-112 112-112 112 50.1 112 112-50.1 112-112 112z'></path>
-                    </svg>
-                    {data.firstName} {data.lastName}
-                    <ul className='text-sm hidden peer-checked:block'>
+                      <svg
+                        stroke='currentColor'
+                        className='cursor-pointer fill-primary active:fill-primaryLight'
+                        strokeWidth='0'
+                        viewBox='0 0 1024 1024'
+                        height='1.2em'
+                        width='1.2em'
+                        xmlns='http://www.w3.org/2000/svg'
+                      >
+                        <path d='M942.2 486.2C847.4 286.5 704.1 186 512 186c-192.2 0-335.4 100.5-430.2 300.3a60.3 60.3 0 0 0 0 51.5C176.6 737.5 319.9 838 512 838c192.2 0 335.4-100.5 430.2-300.3 7.7-16.2 7.7-35 0-51.5zM512 766c-161.3 0-279.4-81.8-362.7-254C232.6 339.8 350.7 258 512 258c161.3 0 279.4 81.8 362.7 254C791.5 684.2 673.4 766 512 766zm-4-430c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm0 288c-61.9 0-112-50.1-112-112s50.1-112 112-112 112 50.1 112 112-50.1 112-112 112z'></path>
+                      </svg>
+                      <span className='pl-2'>
+                        {data.firstName} {data.lastName}
+                      </span>
+                    </label>
+
+                    <ul className='text-xs py-2 hidden peer-checked:block'>
                       <li>Start date : {data.startDate}</li>
 
                       <li>Date of birth : {data.dateOfBirth}</li>

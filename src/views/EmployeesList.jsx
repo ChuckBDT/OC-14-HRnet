@@ -11,12 +11,12 @@ function EmployeesList() {
     fakeData.push({
       firstName: "John",
       lastName: "Test",
-      street: "",
-      city: "",
+      street: "Elton John street 52",
+      city: "New-York",
       zipCode: i,
       birthDate: "13/04/2005",
       startDate: "14/04/2023",
-      state: "",
+      state: "Alabama",
       department: "Marketing",
     });
   }
