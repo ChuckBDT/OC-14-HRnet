@@ -35,7 +35,7 @@ const CustomDataTable = ({ data }) => {
 
   return (
     <div className='w-[80%] text-primary'>
-      <div className='w-full flex items-center justify-between'>
+      <div className='w-full flex items-center justify-between mb-2 '>
         <select
           onChange={(e) => {
             setQt(parseInt(e.target.value));
@@ -49,6 +49,7 @@ const CustomDataTable = ({ data }) => {
           <option value='50'>50</option>
         </select>
         <input
+          className='bg-secondary rounded-lg p-2 shadow '
           placeholder='Search ...'
           onChange={(e) => {
             setFilter(e.target.value);
@@ -146,12 +147,14 @@ const CustomDataTable = ({ data }) => {
           </tbody>
         </table>
       </div>
-      <div>
+      <div className='flex justify-end my-2 gap-x-2'>
         {pagination().map((nb, i) => (
           <button
             key={i}
             onClick={() => setPageActive(nb)}
-            className='bg-secondary h-6 w-6 m-4'
+            className={`${
+              nb == pageActive ? "bg-primary/70 text-secondary" : ""
+            } bg-secondary hover:bg-primaryLight text-primaryLight hover:text-secondary active:text-primaryLight active:bg-secondary shadow h-6 w-6 p-4 flex justify-center items-center rounded`}
           >
             {nb}
           </button>
