@@ -70,7 +70,7 @@ const CustomSimpleSelect = ({ options, handle, value }) => {
             return (
               <li
                 key={i}
-                className='hover:bg-primaryLight hover:text-white text-primary pl-2 py-1 cursor-pointer'
+                className='hover:bg-primaryLight/20 text-primary pl-2 py-1 cursor-pointer'
                 onClick={() => handleSelect(item)}
               >
                 {item}

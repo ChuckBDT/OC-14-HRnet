@@ -21,7 +21,7 @@ function App() {
           <NavLink className='' to={"/employees/list"}>
             {listIcon}
           </NavLink>
-          <div className='lg:order-first flex justify-center items-center lg:mb-4'>
+          <div className='lg:order-first flex justify-center items-center lg:mb-4 select-none'>
             <img src={Logo} alt='' className='h-16  animate-logoNavSpin' />
             <span className='absolute text-tertiary font-copperplate font-bold '>
               HR

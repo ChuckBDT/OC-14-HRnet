@@ -24,7 +24,6 @@ function CustomSelect({
 }) {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(value);
-
   const selectRef = useRef();
 
   useEffect(() => {
