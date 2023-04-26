@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 
 const CustomSimpleSelect = ({ options, handle }) => {
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState(10);
+  const [selected, setSelected] = useState(options[0]);
   const selectRef = useRef();
 
   const handleSelect = (el) => {
