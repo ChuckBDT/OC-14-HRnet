@@ -25,7 +25,7 @@ const CustomDataTable = ({ data }) => {
 
   // Calculating the pagination needed to display the data
   // based on the select limit
-  const pagination = () => {
+  const calculatePagination = () => {
     let floor = Math.floor(dataFiltered.length / displayedQt);
     const modulo = dataFiltered.length % displayedQt;
     if (modulo !== 0) {
@@ -33,17 +33,22 @@ const CustomDataTable = ({ data }) => {
     }
     return Array.from({ length: floor }, (_, index) => index + 1);
   };
+  const pagination = calculatePagination();
+
+  // Args for the CustomSimpleSelect
   const options = [10, 25, 50];
   const handleSelectChoice = (el) => {
     setQt(el);
     setPageActive(1);
   };
+  // End of args
+
   return (
     <div className='w-[80%] text-primary'>
       <div className='w-full flex items-center justify-between mb-2 '>
         <CustomSimpleSelect options={options} handle={handleSelectChoice} />
         <input
-          className='bg-secondary rounded-lg p-2 shadow focus:shadow-none outline-none'
+          className='bg-secondary w-48 rounded-lg p-2 shadow focus:shadow-none outline-none'
           placeholder='Search ...'
           onChange={(e) => {
             setFilter(e.target.value);
@@ -146,17 +151,38 @@ const CustomDataTable = ({ data }) => {
           {dataFiltered.length} employees
         </div>
         <div className='flex gap-x-2'>
-          {pagination().map((nb, i) => (
-            <button
-              key={i}
-              onClick={() => setPageActive(nb)}
-              className={`${
-                nb == pageActive ? "bg-primary/70 text-secondary" : ""
-              } bg-secondary hover:bg-primaryLight text-primaryLight hover:text-secondary active:text-primaryLight active:bg-secondary shadow h-6 w-6 p-4 flex justify-center items-center rounded`}
-            >
-              {nb}
-            </button>
-          ))}
+          {pagination.length > 4 ? (
+            <>
+              <button
+                onClick={() => setPageActive(pagination[0])}
+                className='bg-secondary hover:bg-primaryLight text-primary hover:text-secondary active:text-primaryLight active:bg-secondary shadow h-10 w-10 p-4 flex justify-center items-center rounded-lg'
+              >
+                First
+              </button>
+              <button className='bg-secondary hover:bg-primaryLight text-primary hover:text-secondary active:text-primaryLight active:bg-secondary shadow h-10 w-10 p-4 flex justify-center items-center rounded-lg'>
+                Prev
+              </button>
+              <CustomSimpleSelect options={pagination} handle={setPageActive} />
+              <button className='bg-secondary hover:bg-primaryLight text-primary hover:text-secondary active:text-primaryLight active:bg-secondary shadow h-10 w-10 p-4 flex justify-center items-center rounded-lg'>
+                Next
+              </button>
+              <button className='bg-secondary hover:bg-primaryLight text-primary hover:text-secondary active:text-primaryLight active:bg-secondary shadow h-10 w-10 p-4 flex justify-center items-center rounded-lg'>
+                Last
+              </button>
+            </>
+          ) : (
+            pagination.map((nb, i) => (
+              <button
+                key={i}
+                onClick={() => setPageActive(nb)}
+                className={`${
+                  nb == pageActive ? "bg-primary/70 text-secondary" : ""
+                } bg-secondary hover:bg-primaryLight text-primaryLight hover:text-secondary active:text-primaryLight active:bg-secondary shadow h-6 w-6 p-4 flex justify-center items-center rounded`}
+              >
+                {nb}
+              </button>
+            ))
+          )}
         </div>
       </div>
     </div>
