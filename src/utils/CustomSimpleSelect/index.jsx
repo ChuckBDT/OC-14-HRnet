@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 
-const CustomSimpleSelect = ({ options, handle }) => {
+const CustomSimpleSelect = ({ options, handle, value }) => {
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState(options[0]);
   const selectRef = useRef();
 
   const handleSelect = (el) => {
-    setSelected(el);
     handle(el);
     setOpen(!open);
   };
@@ -32,7 +30,7 @@ const CustomSimpleSelect = ({ options, handle }) => {
     >
       <input
         type='text'
-        value={selected}
+        value={value}
         onClick={() => setOpen(!open)}
         className={`${
           open ? "" : "shadow"

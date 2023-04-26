@@ -43,11 +43,19 @@ const CustomDataTable = ({ data }) => {
   };
   // End of args
 
+  const PAGE_SEL_STYLES =
+    "group bg-secondary text-primary disabled:text-primaryLight shadow active:shadow-none disabled:shadow h-10 w-10 flex justify-center items-center rounded-lg select-none";
+
   return (
     <div className='w-[80%] text-primary'>
       <div className='w-full flex items-center justify-between mb-2 '>
-        <CustomSimpleSelect options={options} handle={handleSelectChoice} />
+        <CustomSimpleSelect
+          options={options}
+          handle={handleSelectChoice}
+          value={displayedQt}
+        />
         <input
+          type='text'
           className='bg-secondary w-48 rounded-lg p-2 shadow focus:shadow-none outline-none'
           placeholder='Search ...'
           onChange={(e) => {
@@ -148,26 +156,97 @@ const CustomDataTable = ({ data }) => {
       </div>
       <div className='flex justify-between my-2 '>
         <div className='text-primary italic text-sm'>
-          {dataFiltered.length} employees
+          {dataFiltered.length} results
         </div>
         <div className='flex gap-x-2'>
           {pagination.length > 4 ? (
             <>
               <button
+                disabled={pageActive === 1 ? true : false}
                 onClick={() => setPageActive(pagination[0])}
-                className='bg-secondary hover:bg-primaryLight text-primary hover:text-secondary active:text-primaryLight active:bg-secondary shadow h-10 w-10 p-4 flex justify-center items-center rounded-lg'
+                className={PAGE_SEL_STYLES}
               >
-                First
+                <svg
+                  stroke='currentColor'
+                  strokeWidth='0'
+                  className='fill-primary group-disabled:fill-primaryLight'
+                  viewBox='0 0 24 24'
+                  height='1.2em'
+                  width='1.2em'
+                  xmlns='http://www.w3.org/2000/svg'
+                >
+                  <path fill='none' d='M0 0h24v24H0z'></path>
+                  <path d='M17.59 18L19 16.59 14.42 12 19 7.41 17.59 6l-6 6z'></path>
+                  <path d='M11 18l1.41-1.41L7.83 12l4.58-4.59L11 6l-6 6z'></path>
+                </svg>
               </button>
-              <button className='bg-secondary hover:bg-primaryLight text-primary hover:text-secondary active:text-primaryLight active:bg-secondary shadow h-10 w-10 p-4 flex justify-center items-center rounded-lg'>
-                Prev
+              <button
+                disabled={pageActive === 1 ? true : false}
+                onClick={() => setPageActive(pageActive - 1)}
+                className={PAGE_SEL_STYLES}
+              >
+                <svg
+                  stroke='currentColor'
+                  strokeWidth='0'
+                  className='fill-primary group-disabled:fill-primaryLight'
+                  viewBox='0 0 24 24'
+                  height='1.2em'
+                  width='1.2em'
+                  xmlns='http://www.w3.org/2000/svg'
+                >
+                  <path fill='none' d='M0 0h24v24H0V0z'></path>
+                  <path d='M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z'></path>
+                </svg>
               </button>
-              <CustomSimpleSelect options={pagination} handle={setPageActive} />
-              <button className='bg-secondary hover:bg-primaryLight text-primary hover:text-secondary active:text-primaryLight active:bg-secondary shadow h-10 w-10 p-4 flex justify-center items-center rounded-lg'>
-                Next
+              <CustomSimpleSelect
+                options={pagination}
+                handle={setPageActive}
+                value={pageActive}
+              />
+              <button
+                disabled={
+                  pageActive === pagination[pagination.length - 1]
+                    ? true
+                    : false
+                }
+                onClick={() => setPageActive(pageActive + 1)}
+                className={PAGE_SEL_STYLES}
+              >
+                <svg
+                  stroke='currentColor'
+                  className='fill-primary group-disabled:fill-primaryLight'
+                  strokeWidth='0'
+                  viewBox='0 0 24 24'
+                  height='1.2em'
+                  width='1.2em'
+                  xmlns='http://www.w3.org/2000/svg'
+                >
+                  <path fill='none' d='M0 0h24v24H0V0z'></path>
+                  <path d='M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z'></path>
+                </svg>
               </button>
-              <button className='bg-secondary hover:bg-primaryLight text-primary hover:text-secondary active:text-primaryLight active:bg-secondary shadow h-10 w-10 p-4 flex justify-center items-center rounded-lg'>
-                Last
+              <button
+                disabled={
+                  pageActive === pagination[pagination.length - 1]
+                    ? true
+                    : false
+                }
+                onClick={() => setPageActive(pagination[pagination.length - 1])}
+                className={PAGE_SEL_STYLES}
+              >
+                <svg
+                  stroke='currentColor'
+                  className='fill-primary group-disabled:fill-primaryLight'
+                  strokeWidth='0'
+                  viewBox='0 0 24 24'
+                  height='1.2em'
+                  width='1.2em'
+                  xmlns='http://www.w3.org/2000/svg'
+                >
+                  <path fill='none' d='M0 0h24v24H0z'></path>
+                  <path d='M6.41 6L5 7.41 9.58 12 5 16.59 6.41 18l6-6z'></path>
+                  <path d='M13 6l-1.41 1.41L16.17 12l-4.58 4.59L13 18l6-6z'></path>
+                </svg>
               </button>
             </>
           ) : (
@@ -176,8 +255,10 @@ const CustomDataTable = ({ data }) => {
                 key={i}
                 onClick={() => setPageActive(nb)}
                 className={`${
-                  nb == pageActive ? "bg-primary/70 text-secondary" : ""
-                } bg-secondary hover:bg-primaryLight text-primaryLight hover:text-secondary active:text-primaryLight active:bg-secondary shadow h-6 w-6 p-4 flex justify-center items-center rounded`}
+                  nb == pageActive
+                    ? "bg-primaryLight text-secondary "
+                    : "bg-secondary text-primary hover:bg-primaryLight/20 active:shadow-none"
+                }  shadow h-6 w-6 p-4 flex justify-center items-center rounded`}
               >
                 {nb}
               </button>
