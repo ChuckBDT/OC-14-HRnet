@@ -23,7 +23,7 @@ function EmployeesList() {
   // End of fake data to test tables during development
 
   return (
-    <main className='bg-tertiary flex flex-col justify-center items-center mb-32 lg:ml-24'>
+    <main className='bg-tertiary flex flex-col justify-center items-center mb-32 lg:mb-0 lg:ml-24'>
       <h1 className='text-center py-8 text-2xl font-bold font-copperplate uppercase text-primary'>
         Employee's List
       </h1>

@@ -41,21 +41,9 @@ const CustomDataTable = ({ data }) => {
   return (
     <div className='w-[80%] text-primary'>
       <div className='w-full flex items-center justify-between mb-2 '>
-        <select
-          onChange={(e) => {
-            setQt(parseInt(e.target.value));
-            setPageActive(1);
-          }}
-          name=''
-          id=''
-        >
-          <option value='10'>10</option>
-          <option value='25'>25</option>
-          <option value='50'>50</option>
-        </select>
         <CustomSimpleSelect options={options} handle={handleSelectChoice} />
         <input
-          className='bg-secondary rounded-lg p-2 shadow outline-none'
+          className='bg-secondary rounded-lg p-2 shadow focus:shadow-none outline-none'
           placeholder='Search ...'
           onChange={(e) => {
             setFilter(e.target.value);
