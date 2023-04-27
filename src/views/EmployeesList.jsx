@@ -24,7 +24,7 @@ function EmployeesList() {
 
   return (
     <main className='bg-tertiary flex flex-col justify-center items-center mb-32 lg:ml-24'>
-      <h1 className='text-center py-8 text-2xl font-bold font-copperplate uppercase text-primary'>
+      <h1 className='text-center py-8 text-2xl font-bold text-primary'>
         Employee's List
       </h1>
       <CustomDataTable data={fakeData} />

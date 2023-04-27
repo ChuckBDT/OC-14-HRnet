@@ -41,7 +41,6 @@ const CustomDatePicker = ({
       <input
         type='text'
         value={selected}
-        onBlur={(e) => console.log(e)}
         onClick={() => setOpen(true)}
         className={inputStyle}
         placeholder={placeholder}

@@ -9,7 +9,7 @@ import { states } from "../data/states";
 import { departments } from "../data/departments";
 
 const FIELD_STYLES =
-  "bg-secondary h-fit rounded-xl py-2 px-3 shadow border-2 focus-within:border-primaryLight";
+  "bg-secondary h-fit rounded-xl py-2 px-3 shadow border focus-within:shadow-none";
 const LABEL_STYLES = "text-sm text-primaryLight w-full block";
 const INPUT_STYLES = "outline-none bg-transparent text-primary w-full";
 const ALERT_STYLES = "text-alertDark text-sm italic px-3";
@@ -40,13 +40,13 @@ function EmployeesCreate() {
   };
   return (
     <main className='bg-tertiary mb-32 lg:mb-0 lg:ml-24'>
-      <h1 className='text-center py-8 text-2xl font-bold font-copperplate uppercase text-primary'>
+      <h1 className='text-center py-8 text-2xl font-bold text-primary'>
         Create employee
       </h1>
       <div className='flex justify-center items-center my-2'>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className='flex flex-col w-[80%] gap-y-3'
+          className='flex flex-col w-[80%] max-w-xl gap-y-3'
         >
           <div
             className={`${FIELD_STYLES} ${
