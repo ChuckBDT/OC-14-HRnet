@@ -33,6 +33,7 @@ const CustomDataTable = ({ data }) => {
     }
     return Array.from({ length: floor }, (_, index) => index + 1);
   };
+
   const pagination = calculatePagination();
 
   // Args for the CustomSimpleSelect
@@ -45,6 +46,7 @@ const CustomDataTable = ({ data }) => {
 
   const PAGE_SEL_STYLES =
     "group bg-secondary text-primary disabled:text-primaryLight shadow active:shadow-none disabled:shadow h-10 w-10 flex justify-center items-center rounded-lg select-none";
+  const PAGINATION_STYLES = "fill-primary group-disabled:fill-primaryLight";
 
   return (
     <div className='w-[80%] text-primary'>
@@ -68,24 +70,26 @@ const CustomDataTable = ({ data }) => {
         <table className='w-full'>
           <thead className='bg-secondary text-primaryLight  h-12 '>
             <tr className=' text-left'>
-              <th className='pl-2 font-medium table-cell sm:hidden'>Name</th>
-              <th className='pl-2 font-medium hidden sm:table-cell'>
+              <th className='px-2 font-medium table-cell sm:hidden'>Name</th>
+              <th className='px-2 font-medium hidden sm:table-cell'>
                 First Name
               </th>
-              <th className='pl-2 font-medium hidden sm:table-cell'>
+              <th className='px-2 font-medium hidden sm:table-cell'>
                 Last Name
               </th>
-              <th className='pl-2 font-medium hidden sm:table-cell'>
+              <th className='px-2 font-medium hidden sm:table-cell'>
                 Start Date
               </th>
-              <th className='pl-2 font-medium '>Department</th>
-              <th className='pl-2 font-medium hidden sm:table-cell'>
+              <th className='px-2 font-medium text-end sm:text-start'>
+                Department
+              </th>
+              <th className='px-2 font-medium hidden sm:table-cell'>
                 Date of Birth
               </th>
-              <th className='pl-2 font-medium hidden sm:table-cell'>Street</th>
-              <th className='pl-2 font-medium hidden sm:table-cell'>City</th>
-              <th className='pl-2 font-medium hidden sm:table-cell'>State</th>
-              <th className='pl-2 font-medium hidden sm:table-cell'>
+              <th className='px-2 font-medium hidden sm:table-cell'>Street</th>
+              <th className='px-2 font-medium hidden sm:table-cell'>City</th>
+              <th className='px-2 font-medium hidden sm:table-cell'>State</th>
+              <th className='px-2 font-medium hidden sm:table-cell'>
                 Zip Code
               </th>
             </tr>
@@ -98,7 +102,7 @@ const CustomDataTable = ({ data }) => {
                   className='h-10 even:bg-secondary/75 text-primary text-sm'
                   key={index}
                 >
-                  <td className='pl-2 py-2  sm:hidden'>
+                  <td className='p-2 sm:hidden'>
                     <input
                       type='checkbox'
                       id={`display-data-${index}`}
@@ -134,136 +138,110 @@ const CustomDataTable = ({ data }) => {
                       <li>Zip code : {data.zipCode}</li>
                     </ul>
                   </td>
-                  <td className='pl-2 hidden sm:table-cell'>
-                    {data.firstName}
+                  <td className='p-2 hidden sm:table-cell'>{data.firstName}</td>
+                  <td className='p-2 hidden sm:table-cell'>{data.lastName}</td>
+                  <td className='p-2 hidden sm:table-cell'>{data.startDate}</td>
+                  <td className='p-2 text-end sm:text-start'>
+                    {data.department}
                   </td>
-                  <td className='pl-2 hidden sm:table-cell'>{data.lastName}</td>
-                  <td className='pl-2 hidden sm:table-cell'>
-                    {data.startDate}
-                  </td>
-                  <td className='pl-2 '>{data.department}</td>
-                  <td className='pl-2 hidden sm:table-cell'>
-                    {data.birthDate}
-                  </td>
-                  <td className='pl-2 hidden sm:table-cell'>{data.street}</td>
-                  <td className='pl-2 hidden sm:table-cell'>{data.city}</td>
-                  <td className='pl-2 hidden sm:table-cell'>{data.state}</td>
-                  <td className='pl-2 hidden sm:table-cell'>{data.zipCode}</td>
+                  <td className='p-2 hidden sm:table-cell'>{data.birthDate}</td>
+                  <td className='p-2 hidden sm:table-cell'>{data.street}</td>
+                  <td className='p-2 hidden sm:table-cell'>{data.city}</td>
+                  <td className='p-2 hidden sm:table-cell'>{data.state}</td>
+                  <td className='p-2 hidden sm:table-cell'>{data.zipCode}</td>
                 </tr>
               ))}
           </tbody>
         </table>
       </div>
       <div className='flex justify-between my-2 '>
-        <div className='text-primary italic text-sm'>
+        <div className='text-primary italic text-sm hidden sm:block'>
           {dataFiltered.length} results
         </div>
-        <div className='flex gap-x-2'>
-          {pagination.length > 4 ? (
-            <>
-              <button
-                disabled={pageActive === 1 ? true : false}
-                onClick={() => setPageActive(pagination[0])}
-                className={PAGE_SEL_STYLES}
-              >
-                <svg
-                  stroke='currentColor'
-                  strokeWidth='0'
-                  className='fill-primary group-disabled:fill-primaryLight'
-                  viewBox='0 0 24 24'
-                  height='1.2em'
-                  width='1.2em'
-                  xmlns='http://www.w3.org/2000/svg'
-                >
-                  <path fill='none' d='M0 0h24v24H0z'></path>
-                  <path d='M17.59 18L19 16.59 14.42 12 19 7.41 17.59 6l-6 6z'></path>
-                  <path d='M11 18l1.41-1.41L7.83 12l4.58-4.59L11 6l-6 6z'></path>
-                </svg>
-              </button>
-              <button
-                disabled={pageActive === 1 ? true : false}
-                onClick={() => setPageActive(pageActive - 1)}
-                className={PAGE_SEL_STYLES}
-              >
-                <svg
-                  stroke='currentColor'
-                  strokeWidth='0'
-                  className='fill-primary group-disabled:fill-primaryLight'
-                  viewBox='0 0 24 24'
-                  height='1.2em'
-                  width='1.2em'
-                  xmlns='http://www.w3.org/2000/svg'
-                >
-                  <path fill='none' d='M0 0h24v24H0V0z'></path>
-                  <path d='M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z'></path>
-                </svg>
-              </button>
-              <CustomSimpleSelect
-                options={pagination}
-                handle={setPageActive}
-                value={pageActive}
-              />
-              <button
-                disabled={
-                  pageActive === pagination[pagination.length - 1]
-                    ? true
-                    : false
-                }
-                onClick={() => setPageActive(pageActive + 1)}
-                className={PAGE_SEL_STYLES}
-              >
-                <svg
-                  stroke='currentColor'
-                  className='fill-primary group-disabled:fill-primaryLight'
-                  strokeWidth='0'
-                  viewBox='0 0 24 24'
-                  height='1.2em'
-                  width='1.2em'
-                  xmlns='http://www.w3.org/2000/svg'
-                >
-                  <path fill='none' d='M0 0h24v24H0V0z'></path>
-                  <path d='M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z'></path>
-                </svg>
-              </button>
-              <button
-                disabled={
-                  pageActive === pagination[pagination.length - 1]
-                    ? true
-                    : false
-                }
-                onClick={() => setPageActive(pagination[pagination.length - 1])}
-                className={PAGE_SEL_STYLES}
-              >
-                <svg
-                  stroke='currentColor'
-                  className='fill-primary group-disabled:fill-primaryLight'
-                  strokeWidth='0'
-                  viewBox='0 0 24 24'
-                  height='1.2em'
-                  width='1.2em'
-                  xmlns='http://www.w3.org/2000/svg'
-                >
-                  <path fill='none' d='M0 0h24v24H0z'></path>
-                  <path d='M6.41 6L5 7.41 9.58 12 5 16.59 6.41 18l6-6z'></path>
-                  <path d='M13 6l-1.41 1.41L16.17 12l-4.58 4.59L13 18l6-6z'></path>
-                </svg>
-              </button>
-            </>
-          ) : (
-            pagination.map((nb, i) => (
-              <button
-                key={i}
-                onClick={() => setPageActive(nb)}
-                className={`${
-                  nb == pageActive
-                    ? "bg-primaryLight text-secondary "
-                    : "bg-secondary text-primary hover:bg-primaryLight/20 active:shadow-none"
-                }  shadow h-6 w-6 p-4 flex justify-center items-center rounded`}
-              >
-                {nb}
-              </button>
-            ))
-          )}
+        <div className='flex justify-center items-center w-full sm:w-3/4 sm:justify-end gap-x-2'>
+          <button
+            disabled={pageActive === 1 ? true : false}
+            onClick={() => setPageActive(pagination[0])}
+            className={PAGE_SEL_STYLES}
+          >
+            <svg
+              stroke='currentColor'
+              strokeWidth='0'
+              className={PAGINATION_STYLES}
+              viewBox='0 0 24 24'
+              height='1.2em'
+              width='1.2em'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path fill='none' d='M0 0h24v24H0z'></path>
+              <path d='M17.59 18L19 16.59 14.42 12 19 7.41 17.59 6l-6 6z'></path>
+              <path d='M11 18l1.41-1.41L7.83 12l4.58-4.59L11 6l-6 6z'></path>
+            </svg>
+          </button>
+          <button
+            disabled={pageActive === 1 ? true : false}
+            onClick={() => setPageActive(pageActive - 1)}
+            className={PAGE_SEL_STYLES}
+          >
+            <svg
+              stroke='currentColor'
+              strokeWidth='0'
+              className={PAGINATION_STYLES}
+              viewBox='0 0 24 24'
+              height='1.2em'
+              width='1.2em'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path fill='none' d='M0 0h24v24H0V0z'></path>
+              <path d='M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z'></path>
+            </svg>
+          </button>
+          <CustomSimpleSelect
+            options={pagination}
+            handle={setPageActive}
+            value={pageActive}
+          />
+          <button
+            disabled={
+              pageActive === pagination[pagination.length - 1] ? true : false
+            }
+            onClick={() => setPageActive(pageActive + 1)}
+            className={PAGE_SEL_STYLES}
+          >
+            <svg
+              stroke='currentColor'
+              className={PAGINATION_STYLES}
+              strokeWidth='0'
+              viewBox='0 0 24 24'
+              height='1.2em'
+              width='1.2em'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path fill='none' d='M0 0h24v24H0V0z'></path>
+              <path d='M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z'></path>
+            </svg>
+          </button>
+          <button
+            disabled={
+              pageActive === pagination[pagination.length - 1] ? true : false
+            }
+            onClick={() => setPageActive(pagination[pagination.length - 1])}
+            className={PAGE_SEL_STYLES}
+          >
+            <svg
+              stroke='currentColor'
+              className={PAGINATION_STYLES}
+              strokeWidth='0'
+              viewBox='0 0 24 24'
+              height='1.2em'
+              width='1.2em'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path fill='none' d='M0 0h24v24H0z'></path>
+              <path d='M6.41 6L5 7.41 9.58 12 5 16.59 6.41 18l6-6z'></path>
+              <path d='M13 6l-1.41 1.41L16.17 12l-4.58 4.59L13 18l6-6z'></path>
+            </svg>
+          </button>
         </div>
       </div>
     </div>

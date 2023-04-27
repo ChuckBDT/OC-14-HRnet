@@ -1,3 +1,5 @@
+/* Custom rules to hide scrollbar */
+
 /* For Webkit-based browsers (Chrome, Safari and Opera) */
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
@@ -8,3 +10,45 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+/* End of Custom rules to hide scrollbar */
+
+/* Custom scrollbar rules */
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #5d7107 #e8e6e8;
+}
+
+/* Chrome, Edge and Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+  width: 8px;
+}
+*::-webkit-scrollbar-track {
+  border-radius: 20px;
+  background-color: #e8e6e8;
+}
+
+*::-webkit-scrollbar-track:hover {
+  background-color: #e8e6e8;
+}
+
+*::-webkit-scrollbar-track:active {
+  background-color: #e8e6e8;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background-color: #5d7107;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #74870e;
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: #95ac17;
+}
+
+/* End of Custom scrollbar rules */

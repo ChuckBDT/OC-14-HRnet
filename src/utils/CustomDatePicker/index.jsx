@@ -30,22 +30,6 @@ const CustomDatePicker = ({
     setSelected(value);
   }, [value]);
 
-  // useEffect(() => {
-  //   function handleClickOutside(event) {
-  //     console.log(event.composedPath().toString());
-  //     console.log(event.composedPath().includes("div#CustomDatePicker"));
-  //     if (event.composedPath().includes("div#CustomDatePicker")) {
-  //       setOpen(false);
-  //     }
-  //   }
-
-  //   window.addEventListener("click", handleClickOutside);
-
-  //   return () => {
-  //     window.removeEventListener("click", handleClickOutside);
-  //   };
-  // }, [selectRef]);
-
   const handleSelect = (option) => {
     setSelected(option);
     onChange(option);
@@ -57,7 +41,8 @@ const CustomDatePicker = ({
       <input
         type='text'
         value={selected}
-        onClick={() => setOpen(!open)}
+        onBlur={(e) => console.log(e)}
+        onClick={() => setOpen(true)}
         className={inputStyle}
         placeholder={placeholder}
         name={name}
