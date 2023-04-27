@@ -52,3 +52,39 @@
 }
 
 /* End of Custom scrollbar rules */
+
+/* Custom rules for the nav bar */
+nav a {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav a::before {
+  content: "";
+  width: 3rem;
+  height: 3rem;
+  position: absolute;
+  border-radius: 25px;
+  background-color: #3e4042;
+  z-index: -10;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+nav a:hover::before {
+  opacity: 1;
+}
+
+nav a.active::before {
+  content: "";
+  width: 3rem;
+  height: 3rem;
+  position: absolute;
+  border-radius: 25px;
+  background-color: #3e4042;
+  z-index: -10;
+  opacity: 1;
+}
+/* End of Custom rules for the nav bar */

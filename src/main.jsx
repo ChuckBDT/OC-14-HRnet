@@ -7,11 +7,13 @@ import Home from "./views/Home";
 import EmployeesList from "./views/EmployeesList";
 import EmployeesCreate from "./views/EmployeesCreate";
 import Settings from "./views/Settings";
+import ErrorPage from "./views/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
