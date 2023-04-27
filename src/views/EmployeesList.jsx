@@ -1,6 +1,6 @@
 import React from "react";
 import useStore from "../store/store";
-import CustomDataTable from "../utils/CustomDataTable";
+import DataTable from "../utils/DataTable";
 
 function EmployeesList() {
   const data = useStore((state) => state.employees);
@@ -27,7 +27,7 @@ function EmployeesList() {
       <h1 className='text-center py-8 text-2xl font-bold text-primary'>
         Employee's List
       </h1>
-      <CustomDataTable data={fakeData} />
+      <DataTable data={fakeData} />
     </main>
   );
 }

@@ -1,8 +1,8 @@
 import React from "react";
-import CustomSelect from "../utils/CustomSelect";
+import FormSelect from "../utils/FormSelect";
 import { Controller, useForm } from "react-hook-form";
 import useModal from "../utils/revolver-modal";
-import CustomDatePicker from "../utils/CustomDatePicker";
+import DatePicker from "../utils/DatePicker";
 import useStore from "../store/store";
 
 import { states } from "../data/states";
@@ -41,7 +41,7 @@ function EmployeesCreate() {
   return (
     <main className='bg-tertiary mb-32 lg:mb-0 lg:ml-24'>
       <h1 className='text-center py-8 text-2xl font-bold text-primary'>
-        Create employee
+        Create an employee
       </h1>
       <div className='flex justify-center items-center my-2'>
         <form
@@ -93,7 +93,7 @@ function EmployeesCreate() {
               defaultValue=''
               rules={{ required: true, valueAsDate: true }}
               render={({ field: { onChange, onBlur, value, name } }) => (
-                <CustomDatePicker
+                <DatePicker
                   inputStyle={INPUT_STYLES}
                   placeholder='Select Birth Date'
                   onChange={(selectedOption) => onChange(selectedOption)}
@@ -119,7 +119,7 @@ function EmployeesCreate() {
               defaultValue=''
               rules={{ required: true, valueAsDate: true }}
               render={({ field: { onChange, onBlur, value, name } }) => (
-                <CustomDatePicker
+                <DatePicker
                   inputStyle={INPUT_STYLES}
                   placeholder='Select Start Date'
                   onChange={(selectedOption) => onChange(selectedOption)}
@@ -161,7 +161,7 @@ function EmployeesCreate() {
               control={control}
               defaultValue=''
               render={({ field: { onChange, onBlur, value, name } }) => (
-                <CustomSelect
+                <FormSelect
                   inputStyle={INPUT_STYLES}
                   placeholder='Select State'
                   options={states}
@@ -198,7 +198,7 @@ function EmployeesCreate() {
               rules={{ required: true }}
               defaultValue=''
               render={({ field: { onChange, onBlur, value, name } }) => (
-                <CustomSelect
+                <FormSelect
                   inputStyle={INPUT_STYLES}
                   placeholder='Select Department'
                   options={departments}

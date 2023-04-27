@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
-import CustomSimpleSelect from "../CustomSimpleSelect";
+import SimpleSelect from "../SimpleSelect";
 
-const CustomDataTable = ({ data }) => {
+const DataTable = ({ data }) => {
   const [filter, setFilter] = useState("");
   const [displayedQt, setQt] = useState(10);
   const [pageActive, setPageActive] = useState(1);
@@ -51,7 +51,7 @@ const CustomDataTable = ({ data }) => {
   return (
     <div className='w-[80%] text-primary'>
       <div className='w-full flex items-center justify-between mb-2 '>
-        <CustomSimpleSelect
+        <SimpleSelect
           options={options}
           handle={handleSelectChoice}
           value={displayedQt}
@@ -196,7 +196,7 @@ const CustomDataTable = ({ data }) => {
               <path d='M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z'></path>
             </svg>
           </button>
-          <CustomSimpleSelect
+          <SimpleSelect
             options={pagination}
             handle={setPageActive}
             value={pageActive}
@@ -248,4 +248,4 @@ const CustomDataTable = ({ data }) => {
   );
 };
 
-export default CustomDataTable;
+export default DataTable;
