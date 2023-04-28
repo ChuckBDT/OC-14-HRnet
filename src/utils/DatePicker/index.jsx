@@ -55,7 +55,7 @@ const CustomDatePicker = ({
   };
 
   return (
-    <div ref={selectRef} id='datepicker'>
+    <div ref={selectRef}>
       <input
         type='text'
         value={selected}

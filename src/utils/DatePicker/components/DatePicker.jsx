@@ -36,7 +36,7 @@ const DatePicker = ({ handleSelect, major }) => {
   return (
     <div
       id='DatePicker'
-      className='h-fit rounded-md absolute shadow-lg p-3 bg-tertiary border border-primary/20 select-none'
+      className='h-fit rounded-md absolute shadow-lg p-3 mt-4 bg-tertiary border border-primary/20 select-none'
     >
       <YearPicker todayYear={majorityYear} year={year} setYear={setYear} />
       <MonthPicker
