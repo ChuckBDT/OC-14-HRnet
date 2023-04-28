@@ -9,7 +9,7 @@ import { states } from "../data/states";
 import { departments } from "../data/departments";
 
 const FIELD_STYLES =
-  "bg-secondary h-fit rounded-xl py-2 px-3 shadow border focus-within:shadow-none";
+  "bg-secondary h-fit w-full rounded-xl py-2 px-3 shadow border focus-within:shadow-none";
 const LABEL_STYLES = "text-sm text-primaryLight w-full block";
 const INPUT_STYLES = "outline-none bg-transparent text-primary w-full";
 const ALERT_STYLES = "text-alertDark text-sm italic px-3";
@@ -46,7 +46,7 @@ function EmployeesCreate() {
       <div className='flex justify-center items-center my-2'>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className='flex flex-col w-[80%] max-w-xl gap-y-3'
+          className='flex flex-col justify-center items-center w-[80%] max-w-xl gap-y-3'
         >
           <div
             className={`${FIELD_STYLES} ${
@@ -215,7 +215,7 @@ function EmployeesCreate() {
           ) : null}
           <button
             type='submit'
-            className='bg-primary text-white h-16 my-6 rounded-xl'
+            className='bg-primary text-white h-16 w-56 my-6 rounded-xl'
           >
             Save
           </button>

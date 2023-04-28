@@ -30,6 +30,24 @@ const CustomDatePicker = ({
     setSelected(value);
   }, [value]);
 
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        selectRef.current &&
+        !selectRef.current.contains(event.target) &&
+        !event.target.closest("#YearPicker")
+      ) {
+        setOpen(false);
+      }
+    }
+
+    window.addEventListener("click", handleClickOutside);
+
+    return () => {
+      window.removeEventListener("click", handleClickOutside);
+    };
+  }, [selectRef]);
+
   const handleSelect = (option) => {
     setSelected(option);
     onChange(option);
@@ -37,11 +55,11 @@ const CustomDatePicker = ({
   };
 
   return (
-    <div ref={selectRef} id='CustomDatePicker'>
+    <div ref={selectRef} id='datepicker'>
       <input
         type='text'
         value={selected}
-        onClick={() => setOpen(true)}
+        onClick={() => setOpen(!open)}
         className={inputStyle}
         placeholder={placeholder}
         name={name}
