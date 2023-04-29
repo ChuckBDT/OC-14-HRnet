@@ -221,7 +221,7 @@ function EmployeesCreate() {
           </button>
         </form>
       </div>
-      {setModalOne(<p>Employee Created !</p>)}
+      {setModalOne(<p className='text-primary'>Employee Created !</p>)}
     </main>
   );
 }
