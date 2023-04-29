@@ -6,10 +6,14 @@ const DataTable = ({ data }) => {
   const [displayedQt, setQt] = useState(10);
   const [pageActive, setPageActive] = useState(1);
 
+  performance.mark("start-memo");
   // Filtering data from props with input's content
   const dataFiltered = data.filter((data) =>
     JSON.stringify(data).toLowerCase().includes(filter.toLowerCase())
   );
+
+  performance.mark("end-memo");
+  console.log(performance.measure("memo-duration", "start-memo", "end-memo"));
 
   // Calculating the indexes of data to display depending on
   // the active page
@@ -43,6 +47,8 @@ const DataTable = ({ data }) => {
     setPageActive(1);
   };
   // End of args
+
+  // console.log(dataFiltered, dataRefsToDisplay, pagination);
 
   const PAGE_SEL_STYLES =
     "group bg-secondary text-primary disabled:text-primaryLight shadow active:shadow-none disabled:shadow h-10 w-10 flex justify-center items-center rounded-lg select-none";
