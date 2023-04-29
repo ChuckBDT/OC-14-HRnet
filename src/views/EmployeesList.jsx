@@ -7,7 +7,7 @@ function EmployeesList() {
 
   // Fake data to test tables during development
   const fakeData = [];
-  for (let i = 1; i < 80; i++) {
+  for (let i = 1; i < 18; i++) {
     fakeData.push({
       firstName: "John",
       lastName: "Test",

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 
-const CustomSimpleSelect = ({ options, handle, value }) => {
+const CustomSimpleSelect = ({ options, handle, value, down = true }) => {
   const [open, setOpen] = useState(false);
   const selectRef = useRef();
 
@@ -65,7 +65,11 @@ const CustomSimpleSelect = ({ options, handle, value }) => {
         </svg>
       )}
       {open && (
-        <ul className='max-h-36 bg-secondary overflow-y-auto top-12 absolute w-full rounded-lg shadow'>
+        <ul
+          className={`${
+            down ? "top-12" : "bottom-12"
+          } max-h-36 bg-secondary overflow-y-auto absolute w-full rounded-lg shadow`}
+        >
           {options.map((item, i) => {
             return (
               <li

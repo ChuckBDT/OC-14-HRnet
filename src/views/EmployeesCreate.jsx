@@ -61,6 +61,8 @@ function EmployeesCreate() {
               className={INPUT_STYLES}
               type='text'
               id='firstName'
+              maxLength={25}
+              minLength={3}
             />
           </div>
 
@@ -77,6 +79,8 @@ function EmployeesCreate() {
               className={INPUT_STYLES}
               type='text'
               id='lastName'
+              maxLength={25}
+              minLength={3}
             />
           </div>
           <div
@@ -139,6 +143,8 @@ function EmployeesCreate() {
               className={INPUT_STYLES}
               type='text'
               id='street'
+              maxLength={40}
+              minLength={3}
             />
           </div>
           <div className={`${FIELD_STYLES} border-transparent`}>
@@ -150,6 +156,8 @@ function EmployeesCreate() {
               className={INPUT_STYLES}
               type='text'
               id='city'
+              maxLength={30}
+              minLength={3}
             />
           </div>
           <div className={`${FIELD_STYLES} border-transparent`}>
@@ -182,6 +190,8 @@ function EmployeesCreate() {
               className={INPUT_STYLES}
               type='text'
               id='zipCode'
+              maxLength={10}
+              minLength={3}
             />
           </div>
           <div

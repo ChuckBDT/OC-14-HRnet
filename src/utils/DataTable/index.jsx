@@ -86,10 +86,10 @@ const DataTable = ({ data }) => {
               <th className='px-2 font-medium hidden sm:table-cell'>
                 Date of Birth
               </th>
-              <th className='px-2 font-medium hidden sm:table-cell'>Street</th>
+              <th className='px-2 font-medium hidden lg:table-cell'>Street</th>
               <th className='px-2 font-medium hidden sm:table-cell'>City</th>
-              <th className='px-2 font-medium hidden sm:table-cell'>State</th>
-              <th className='px-2 font-medium hidden sm:table-cell'>
+              <th className='px-2 font-medium hidden lg:table-cell'>State</th>
+              <th className='px-2 font-medium hidden lg:table-cell'>
                 Zip Code
               </th>
             </tr>
@@ -145,10 +145,10 @@ const DataTable = ({ data }) => {
                     {data.department}
                   </td>
                   <td className='p-2 hidden sm:table-cell'>{data.birthDate}</td>
-                  <td className='p-2 hidden sm:table-cell'>{data.street}</td>
+                  <td className='p-2 hidden lg:table-cell'>{data.street}</td>
                   <td className='p-2 hidden sm:table-cell'>{data.city}</td>
-                  <td className='p-2 hidden sm:table-cell'>{data.state}</td>
-                  <td className='p-2 hidden sm:table-cell'>{data.zipCode}</td>
+                  <td className='p-2 hidden lg:table-cell'>{data.state}</td>
+                  <td className='p-2 hidden lg:table-cell'>{data.zipCode}</td>
                 </tr>
               ))}
           </tbody>
@@ -200,6 +200,7 @@ const DataTable = ({ data }) => {
             options={pagination}
             handle={setPageActive}
             value={pageActive}
+            down={false}
           />
           <button
             disabled={
