@@ -58,7 +58,7 @@ function EmployeesCreate() {
               First Name
             </label>
             <input
-              {...register("First name", { required: true })}
+              {...register("firstName", { required: true })}
               className={INPUT_STYLES}
               type='text'
               id='firstName'

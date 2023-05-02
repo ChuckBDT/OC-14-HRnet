@@ -57,7 +57,7 @@ const DataTable = ({ data, columns }) => {
           <thead className='bg-secondary text-primaryLight  h-12 '>
             <tr className=' text-left'>
               {Object.keys(columns).map((title, i) => (
-                <th key={i} className='px-2 font-medium table-cell'>
+                <th key={i} className='px-2 font-medium table-cell select-none'>
                   {columns[title]}
                 </th>
               ))}
@@ -87,11 +87,11 @@ const DataTable = ({ data, columns }) => {
           .map((data, i) => (
             <ul
               key={i}
-              className='h-fit p-2 bg-secondary/75 text-primary text-sm rounded-lg leading-[5px] shadow'
+              className='h-fit p-2 bg-secondary/75 text-primary text-sm rounded-lg shadow'
             >
               {Object.keys(columns).map((title, i) => (
-                <li key={i} className='p-2'>
-                  <span className='font-bold text-primaryLight'>
+                <li key={i} className=''>
+                  <span className='text-primaryLight'>
                     {columns[title] + " : "}
                   </span>
                   {data[title]}
