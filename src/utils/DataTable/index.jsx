@@ -52,7 +52,7 @@ const DataTable = ({ data, columns }) => {
         ></input>
       </div>
       {/* END OF HEADER */}
-      <div className=' rounded-lg shadow overflow-auto '>
+      <div className='rounded-lg shadow overflow-auto hidden lg:block'>
         <table className='w-full'>
           <thead className='bg-secondary text-primaryLight  h-12 '>
             <tr className=' text-left'>
@@ -80,6 +80,23 @@ const DataTable = ({ data, columns }) => {
               ))}
           </tbody>
         </table>
+      </div>
+      <div className='lg:hidden grid grid-cols-1 sm:grid-cols-2 gap-4 h-full'>
+        {dataFiltered
+          .slice(dataRefsToDisplay[0], dataRefsToDisplay[1])
+          .map((data, i) => (
+            <ul
+              key={i}
+              className='h-fit p-2 bg-secondary/75 text-primary text-xs rounded-lg leading-3 shadow'
+            >
+              {Object.keys(columns).map((title, i) => (
+                <li key={i} className='p-2'>
+                  <span className='font-bold'>{columns[title] + " : "}</span>
+                  {data[title]}
+                </li>
+              ))}
+            </ul>
+          ))}
       </div>
 
       {/* FOOTER */}
