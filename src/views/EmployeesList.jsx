@@ -7,7 +7,7 @@ function EmployeesList() {
   const data = useStore((state) => state.employees);
 
   return (
-    <main className='bg-tertiary flex flex-col justify-center items-center mb-32 lg:ml-24'>
+    <main className='bg-tertiary flex flex-col justify-center items-center lg:pb-24 mb-32 sm:mb-0 lg:ml-24'>
       <h1 className='text-center py-8 text-2xl font-bold text-primary'>
         Employee's List
       </h1>
