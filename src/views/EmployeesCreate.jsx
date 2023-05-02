@@ -35,11 +35,12 @@ function EmployeesCreate() {
 
   const onSubmit = (data) => {
     addEmployee(data);
+    console.log(data);
     reset();
     triggerModalOne();
   };
   return (
-    <main className='bg-tertiary mb-32 sm:mb-0 lg:mb-0 lg:pb-24 lg:ml-24'>
+    <main className='bg-tertiary mb-32 lg:mb-0 lg:mb-0 lg:pb-24 lg:ml-24'>
       <h1 className='text-center py-8 text-2xl font-bold text-primary'>
         Create an employee
       </h1>
@@ -57,7 +58,7 @@ function EmployeesCreate() {
               First Name
             </label>
             <input
-              {...register("firstName", { required: true })}
+              {...register("First name", { required: true })}
               className={INPUT_STYLES}
               type='text'
               id='firstName'

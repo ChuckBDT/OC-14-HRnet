@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 
-const CustomSimpleSelect = ({ options, handle, value, down = true }) => {
+const SimpleSelect = ({ options, handle, value, down = true }) => {
   const [open, setOpen] = useState(false);
   const selectRef = useRef();
 
@@ -85,4 +85,4 @@ const CustomSimpleSelect = ({ options, handle, value, down = true }) => {
   );
 };
 
-export default CustomSimpleSelect;
+export default SimpleSelect;
