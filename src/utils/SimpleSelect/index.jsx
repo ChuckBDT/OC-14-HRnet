@@ -24,57 +24,55 @@ const CustomSimpleSelect = ({ options, handle, value, down = true }) => {
   }, [selectRef]);
 
   return (
-    <div
-      ref={selectRef}
-      className='w-14 relative flex justify-between items-center'
-    >
-      <input
+    <div ref={selectRef} className='relative'>
+      <button
         type='text'
         value={value}
         onClick={() => setOpen(!open)}
         className={`${
           open ? "" : "shadow"
-        } bg-secondary outline-none w-full p-2 rounded-lg cursor-pointer text-primary select-none`}
-        readOnly
-      />
-      {open ? (
-        <svg
-          stroke='currentColor'
-          onClick={() => setOpen(!open)}
-          className='absolute right-2 fill-primary'
-          strokeWidth='0'
-          viewBox='0 0 512 512'
-          height='1em'
-          width='1em'
-          xmlns='http://www.w3.org/2000/svg'
-        >
-          <path d='M256 217.9L383 345c9.4 9.4 24.6 9.4 33.9 0 9.4-9.4 9.3-24.6 0-34L273 167c-9.1-9.1-23.7-9.3-33.1-.7L95 310.9c-4.7 4.7-7 10.9-7 17s2.3 12.3 7 17c9.4 9.4 24.6 9.4 33.9 0l127.1-127z'></path>
-        </svg>
-      ) : (
-        <svg
-          stroke='currentColor'
-          onClick={() => setOpen(!open)}
-          className='absolute right-2 fill-primary cursor-pointer'
-          strokeWidth='0'
-          viewBox='0 0 512 512'
-          height='1em'
-          width='1em'
-          xmlns='http://www.w3.org/2000/svg'
-        >
-          <path d='M256 294.1L383 167c9.4-9.4 24.6-9.4 33.9 0s9.3 24.6 0 34L273 345c-9.1 9.1-23.7 9.3-33.1.7L95 201.1c-4.7-4.7-7-10.9-7-17s2.3-12.3 7-17c9.4-9.4 24.6-9.4 33.9 0l127.1 127z'></path>
-        </svg>
-      )}
+        } bg-secondary flex justify-center items-center p-2 rounded-lg h-10 cursor-pointer max-w-full text-primary select-none`}
+      >
+        {value}
+        {open ? (
+          <svg
+            stroke='currentColor'
+            onClick={() => setOpen(!open)}
+            className='ml-2 fill-primary'
+            strokeWidth='0'
+            viewBox='0 0 512 512'
+            height='1em'
+            width='1em'
+            xmlns='http://www.w3.org/2000/svg'
+          >
+            <path d='M256 217.9L383 345c9.4 9.4 24.6 9.4 33.9 0 9.4-9.4 9.3-24.6 0-34L273 167c-9.1-9.1-23.7-9.3-33.1-.7L95 310.9c-4.7 4.7-7 10.9-7 17s2.3 12.3 7 17c9.4 9.4 24.6 9.4 33.9 0l127.1-127z'></path>
+          </svg>
+        ) : (
+          <svg
+            stroke='currentColor'
+            onClick={() => setOpen(!open)}
+            className='ml-2 fill-primary cursor-pointer'
+            strokeWidth='0'
+            viewBox='0 0 512 512'
+            height='1em'
+            width='1em'
+            xmlns='http://www.w3.org/2000/svg'
+          >
+            <path d='M256 294.1L383 167c9.4-9.4 24.6-9.4 33.9 0s9.3 24.6 0 34L273 345c-9.1 9.1-23.7 9.3-33.1.7L95 201.1c-4.7-4.7-7-10.9-7-17s2.3-12.3 7-17c9.4-9.4 24.6-9.4 33.9 0l127.1 127z'></path>
+          </svg>
+        )}
+      </button>
       {open && (
         <ul
           className={`${
             down ? "top-12" : "bottom-12"
-          } max-h-36 bg-secondary overflow-y-auto absolute w-full rounded-lg shadow`}
+          } max-h-36 bg-secondary overflow-y-auto absolute min-w-full  rounded-lg shadow-lg  `}
         >
           {options.map((item, i) => {
             return (
               <li
                 key={i}
-                className='hover:bg-primaryLight/20 text-primary pl-2 py-1 cursor-pointer'
+                className='hover:bg-primaryLight/20 text-primary w-full px-2 py-1 cursor-pointer'
                 onClick={() => handleSelect(item)}
               >
                 {item}
