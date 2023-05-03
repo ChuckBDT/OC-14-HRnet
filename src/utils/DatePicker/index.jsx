@@ -59,7 +59,7 @@ const CustomDatePicker = ({
       <input
         type='text'
         value={selected}
-        onClick={() => setOpen(!open)}
+        onClick={() => setOpen(true)}
         className={`${inputStyle} cursor-pointer`}
         placeholder={placeholder}
         name={name}
