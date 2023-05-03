@@ -32,7 +32,7 @@ const DataTable = ({ data, columns }) => {
   return (
     <>
       {/* HEADER */}
-      <div className='w-full flex items-center justify-between mb-2 '>
+      <div className='w-full flex items-center justify-between mb-2 gap-x-2'>
         <SimpleSelect
           options={[10, 25, 50]}
           handle={handleSelectChoice}
@@ -40,7 +40,7 @@ const DataTable = ({ data, columns }) => {
         />
         <input
           type='text'
-          className='bg-secondary w-48 rounded-lg p-2 shadow focus:shadow-none outline-none'
+          className='bg-secondary w-full sm:w-48 rounded-lg p-2 shadow focus:shadow-none outline-none'
           placeholder='Search ...'
           onChange={(e) => {
             setFilter(e.target.value);

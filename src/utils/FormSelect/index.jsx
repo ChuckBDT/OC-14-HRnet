@@ -56,7 +56,7 @@ function CustomSelect({
         type='text'
         value={selected}
         onClick={() => setOpen(!open)}
-        className={inputStyle}
+        className={`${inputStyle} cursor-pointer`}
         placeholder={placeholder}
         name={name}
         id={name}

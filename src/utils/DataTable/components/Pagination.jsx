@@ -25,7 +25,7 @@ const Pagination = ({
   const pagination = calculatePagination();
 
   return (
-    <div className='flex justify-center items-center w-full sm:w-3/4 sm:justify-end gap-x-2'>
+    <div className='flex  justify-between items-center w-full sm:w-3/4 sm:justify-end gap-x-2'>
       <button
         disabled={pageActive === 1 ? true : false}
         onClick={() => setPageActive(pagination[0])}

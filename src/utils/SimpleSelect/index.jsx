@@ -66,7 +66,7 @@ const SimpleSelect = ({ options, handle, value, down = true }) => {
         <ul
           className={`${
             down ? "top-12" : "bottom-12"
-          } max-h-36 bg-secondary overflow-y-auto absolute min-w-full  rounded-lg shadow-lg z-10 `}
+          } max-h-36 bg-secondary overflow-y-auto absolute min-w-full rounded-lg shadow-lg z-10 `}
         >
           {options.map((item, i) => {
             return (

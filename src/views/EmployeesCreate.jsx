@@ -40,7 +40,7 @@ function EmployeesCreate() {
     triggerModalOne();
   };
   return (
-    <main className='bg-tertiary mb-32 lg:mb-0 lg:mb-0 lg:pb-24 lg:ml-24'>
+    <main className='bg-tertiary mb-32 lg:mb-0 lg:pb-24 lg:ml-24'>
       <h1 className='text-center py-8 text-2xl font-bold text-primary'>
         Create an employee
       </h1>
@@ -226,7 +226,7 @@ function EmployeesCreate() {
           ) : null}
           <button
             type='submit'
-            className='bg-primary text-white h-16 w-56 my-6 rounded-xl'
+            className='bg-primary text-white h-16 w-56 my-6 rounded-xl shadow-lg active:shadow-none'
           >
             Save
           </button>
