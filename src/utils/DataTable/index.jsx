@@ -24,20 +24,17 @@ const DataTable = ({ data, columns }) => {
 
   const dataRefsToDisplay = getNumbers();
 
-  // Args for the SimpleSelect in the header
-  const options = [10, 25, 50];
   const handleSelectChoice = (el) => {
     setQt(el);
     setPageActive(1);
   };
-  // End of args
 
   return (
     <>
       {/* HEADER */}
       <div className='w-full flex items-center justify-between mb-2 '>
         <SimpleSelect
-          options={options}
+          options={[10, 25, 50]}
           handle={handleSelectChoice}
           value={displayedQt}
         />
@@ -54,8 +51,8 @@ const DataTable = ({ data, columns }) => {
       {/* END OF HEADER */}
       <div className='rounded-lg shadow overflow-auto hidden lg:block'>
         <table className='w-full'>
-          <thead className='bg-secondary text-primaryLight  h-12 '>
-            <tr className=' text-left'>
+          <thead className='bg-secondary text-primary drop-shadow h-12 '>
+            <tr className='text-left '>
               {Object.keys(columns).map((title, i) => (
                 <th key={i} className='px-2 font-medium table-cell select-none'>
                   {columns[title]}
