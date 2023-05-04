@@ -29,9 +29,62 @@ const DataTable = ({ data, columns }) => {
     setPageActive(1);
   };
 
+  const generateDesktopHead = useMemo(
+    () => (columns) => {
+      return Object.keys(columns).map((title, i) => (
+        <th key={i} className='px-2 font-medium table-cell select-none'>
+          {columns[title]}
+        </th>
+      ));
+    },
+    [columns]
+  );
+
+  const generateDesktopRows = useMemo(
+    () => (dataFiltered, dataRefsToDisplay) => {
+      return dataFiltered
+        .slice(dataRefsToDisplay[0], dataRefsToDisplay[1])
+        .map((data, i) => (
+          <tr
+            className='h-10 even:bg-secondary/75 text-primary text-sm'
+            key={i}
+          >
+            {Object.keys(columns).map((title, i) => (
+              <td key={i} className='p-2'>
+                {data[title]}
+              </td>
+            ))}
+          </tr>
+        ));
+    },
+    [dataFiltered, dataRefsToDisplay]
+  );
+
+  const generateMobileRows = useMemo(
+    () => (dataFiltered, dataRefsToDisplay) => {
+      return dataFiltered
+        .slice(dataRefsToDisplay[0], dataRefsToDisplay[1])
+        .map((data, i) => (
+          <ul
+            key={i}
+            className='h-fit p-2 bg-secondary/75 text-primary text-sm rounded-lg shadow'
+          >
+            {Object.keys(columns).map((title, i) => (
+              <li key={i} className='text-center'>
+                <span className='text-primaryLight'>
+                  {columns[title] + " : "}
+                </span>
+                {data[title]}
+              </li>
+            ))}
+          </ul>
+        ));
+    },
+    [dataFiltered, dataRefsToDisplay]
+  );
+
   return (
     <>
-      {/* HEADER */}
       <div className='w-full flex items-center justify-between mb-2 gap-x-2'>
         <SimpleSelect
           options={[10, 25, 50]}
@@ -48,57 +101,20 @@ const DataTable = ({ data, columns }) => {
           }}
         ></input>
       </div>
-      {/* END OF HEADER */}
+
       <div className='rounded-lg shadow overflow-auto hidden lg:block'>
         <table className='w-full'>
           <thead className='bg-secondary text-primary drop-shadow h-12 '>
-            <tr className='text-left '>
-              {Object.keys(columns).map((title, i) => (
-                <th key={i} className='px-2 font-medium table-cell select-none'>
-                  {columns[title]}
-                </th>
-              ))}
-            </tr>
+            <tr className='text-left '>{generateDesktopHead(columns)}</tr>
           </thead>
           <tbody className='bg-tertiary'>
-            {dataFiltered
-              .slice(dataRefsToDisplay[0], dataRefsToDisplay[1])
-              .map((data, i) => (
-                <tr
-                  className='h-10 even:bg-secondary/75 text-primary text-sm'
-                  key={i}
-                >
-                  {Object.keys(columns).map((title, i) => (
-                    <td key={i} className='p-2'>
-                      {data[title]}
-                    </td>
-                  ))}
-                </tr>
-              ))}
+            {generateDesktopRows(dataFiltered, dataRefsToDisplay)}
           </tbody>
         </table>
       </div>
       <div className='lg:hidden grid grid-cols-1 sm:grid-cols-2 gap-4 h-full'>
-        {dataFiltered
-          .slice(dataRefsToDisplay[0], dataRefsToDisplay[1])
-          .map((data, i) => (
-            <ul
-              key={i}
-              className='h-fit p-2 bg-secondary/75 text-primary text-sm rounded-lg shadow'
-            >
-              {Object.keys(columns).map((title, i) => (
-                <li key={i} className='text-center'>
-                  <span className='text-primaryLight'>
-                    {columns[title] + " : "}
-                  </span>
-                  {data[title]}
-                </li>
-              ))}
-            </ul>
-          ))}
+        {generateMobileRows(dataFiltered, dataRefsToDisplay)}
       </div>
-
-      {/* FOOTER */}
       <div className='flex justify-between my-2 '>
         <div className='text-primary italic text-sm hidden sm:block'>
           {dataFiltered.length} results
@@ -110,7 +126,6 @@ const DataTable = ({ data, columns }) => {
           setPageActive={setPageActive}
         />
       </div>
-      {/* END OF FOOTER */}
     </>
   );
 };
