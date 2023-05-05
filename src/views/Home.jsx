@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import Logo from "../assets/logo.svg";
 
@@ -8,6 +8,10 @@ import Logo from "../assets/logo.svg";
  * @return {JSX.Element} The Home component.
  */
 function Home() {
+  useEffect(() => {
+    document.title = "HRnet | Home";
+  }, []);
+
   return (
     <main className='flex-1 mt-24 sm:mt-12 lg:ml-24'>
       <div className='bg-tertiary flex flex-col l lg:flex-row h-3/4 gap-y-8 lg:gap-y-0 lg:gap-x-16 justify-center items-center '>

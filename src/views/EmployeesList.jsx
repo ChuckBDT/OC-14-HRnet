@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useStore from "../store/store";
 import DataTable from "../components/DataTable";
 import { mockedData } from "../data/mockedData";
@@ -9,6 +9,10 @@ import { mockedData } from "../data/mockedData";
  */
 function EmployeesList() {
   const data = useStore((state) => state.employees);
+
+  useEffect(() => {
+    document.title = "HRnet | Employee List";
+  }, []);
 
   // Here you define the ordre of the columns you want in the table
   // and also the names of them, based on your datas attributes

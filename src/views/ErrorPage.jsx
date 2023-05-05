@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Logo from "../assets/logo.svg";
 import { Link } from "react-router-dom";
 
@@ -8,6 +8,10 @@ import { Link } from "react-router-dom";
  * @returns {JSX.Element} The JSX code for the ErrorPage component.
  */
 const ErrorPage = () => {
+  useEffect(() => {
+    document.title = "HRnet | Error 404";
+  }, []);
+
   return (
     <main className='bg-primary h-screen w-screen flex justify-center items-center flex-col'>
       <div className='flex justify-center items-center flex-col'>

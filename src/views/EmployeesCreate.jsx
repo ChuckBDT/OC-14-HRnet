@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import FormSelect from "../components/ReactHookForm/FormSelect";
 import { Controller, useForm } from "react-hook-form";
 import useModal from "../utils/revolver-modal";
@@ -34,6 +34,10 @@ function EmployeesCreate() {
     control,
     reset,
   } = useForm();
+
+  useEffect(() => {
+    document.title = "HRnet | Create Employee";
+  }, []);
 
   const onSubmit = (data) => {
     addEmployee(data);
