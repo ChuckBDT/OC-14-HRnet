@@ -227,7 +227,7 @@ function EmployeesCreate() {
           ) : null}
           <button
             type='submit'
-            className='bg-primary text-white h-16 w-56 m-6 rounded-xl shadow-lg active:shadow-none'
+            className='bg-primary text-white h-16 w-56 m-6 mb-0 rounded-xl shadow-lg active:shadow-none'
           >
             Save
           </button>
