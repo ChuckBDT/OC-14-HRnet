@@ -1,8 +1,12 @@
 import React from "react";
 import useStore from "../store/store";
-import DataTable from "../utils/DataTable";
+import DataTable from "../components/DataTable";
 import { mockedData } from "../data/mockedData";
 
+/**
+ * A functional component that displays a list of employees in a DataTable.
+ * @component
+ */
 function EmployeesList() {
   const data = useStore((state) => state.employees);
 

@@ -1,8 +1,8 @@
 import React from "react";
-import FormSelect from "../utils/FormSelect";
+import FormSelect from "../components/ReactHookForm/FormSelect";
 import { Controller, useForm } from "react-hook-form";
 import useModal from "../utils/revolver-modal";
-import DatePicker from "../utils/DatePicker";
+import DatePicker from "../components/ReactHookForm/DatePicker";
 import useStore from "../store/store";
 
 import { states } from "../data/states";
@@ -37,7 +37,6 @@ function EmployeesCreate() {
 
   const onSubmit = (data) => {
     addEmployee(data);
-    console.log(data);
     reset();
     triggerModalOne();
   };

@@ -2,6 +2,11 @@ import React from "react";
 
 import Logo from "../assets/logo.svg";
 
+/**
+ * Renders the Home component, which displays the landing page of the HRnet application.
+ *
+ * @return {JSX.Element} The Home component.
+ */
 function Home() {
   return (
     <main className='flex-1 mt-24 sm:mt-12 lg:ml-24'>

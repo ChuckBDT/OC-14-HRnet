@@ -2,6 +2,11 @@ import React from "react";
 import Logo from "../assets/logo.svg";
 import { Link } from "react-router-dom";
 
+/**
+ * Renders a 404 error page with a message and a link to the home page.
+ *
+ * @returns {JSX.Element} The JSX code for the ErrorPage component.
+ */
 const ErrorPage = () => {
   return (
     <main className='bg-primary h-screen w-screen flex justify-center items-center flex-col'>
