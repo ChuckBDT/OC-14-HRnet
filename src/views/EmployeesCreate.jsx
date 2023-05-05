@@ -8,11 +8,13 @@ import useStore from "../store/store";
 import { states } from "../data/states";
 import { departments } from "../data/departments";
 
-const FIELD_STYLES =
-  "bg-secondary h-fit w-full rounded-xl py-2 px-3 shadow border focus-within:shadow-none";
-const LABEL_STYLES = "text-sm text-primaryLight w-full block";
-const INPUT_STYLES = "outline-none bg-transparent text-primary w-full";
-const ALERT_STYLES = "text-alertDark text-sm italic px-3";
+const styles = {
+  field:
+    "bg-secondary h-fit w-full rounded-xl py-2 px-3 shadow border focus-within:shadow-none",
+  label: "text-sm text-primaryLight w-full block",
+  input: "outline-none bg-transparent text-primary w-full",
+  alert: "text-alertDark text-sm italic px-3",
+};
 
 /**
  * A form component for creating new employees, with various fields.
@@ -50,16 +52,16 @@ function EmployeesCreate() {
           className='flex flex-col justify-center items-center w-[80%] max-w-xl gap-y-3'
         >
           <div
-            className={`${FIELD_STYLES} ${
+            className={`${styles.field} ${
               errors.firstName ? "border-alertDark " : "border-transparent"
             }`}
           >
-            <label className={LABEL_STYLES} htmlFor='firstName'>
+            <label className={styles.label} htmlFor='firstName'>
               First Name
             </label>
             <input
               {...register("firstName", { required: true })}
-              className={INPUT_STYLES}
+              className={styles.input}
               type='text'
               id='firstName'
               maxLength={25}
@@ -68,16 +70,16 @@ function EmployeesCreate() {
           </div>
 
           <div
-            className={`${FIELD_STYLES} ${
+            className={`${styles.field} ${
               errors.lastName ? "border-alertDark " : "border-transparent"
             }`}
           >
-            <label className={LABEL_STYLES} htmlFor='lastName'>
+            <label className={styles.label} htmlFor='lastName'>
               Last Name
             </label>
             <input
               {...register("lastName", { required: true })}
-              className={INPUT_STYLES}
+              className={styles.input}
               type='text'
               id='lastName'
               maxLength={25}
@@ -85,11 +87,11 @@ function EmployeesCreate() {
             />
           </div>
           <div
-            className={`${FIELD_STYLES} ${
+            className={`${styles.field} ${
               errors.birthDate ? "border-alertDark " : "border-transparent"
             }`}
           >
-            <label className={LABEL_STYLES} htmlFor='birthDate'>
+            <label className={styles.label} htmlFor='birthDate'>
               Date of Birth
             </label>
             <Controller
@@ -99,7 +101,7 @@ function EmployeesCreate() {
               rules={{ required: true, valueAsDate: true }}
               render={({ field: { onChange, onBlur, value, name } }) => (
                 <DatePicker
-                  inputStyle={INPUT_STYLES}
+                  inputStyle={styles.input}
                   placeholder='Select Birth Date'
                   onChange={(selectedOption) => onChange(selectedOption)}
                   onBlur={onBlur}
@@ -111,11 +113,11 @@ function EmployeesCreate() {
             />
           </div>
           <div
-            className={`${FIELD_STYLES} ${
+            className={`${styles.field} ${
               errors.startDate ? "border-alertDark " : "border-transparent"
             }`}
           >
-            <label className={LABEL_STYLES} htmlFor='startDate'>
+            <label className={styles.label} htmlFor='startDate'>
               Start Date
             </label>
             <Controller
@@ -125,7 +127,7 @@ function EmployeesCreate() {
               rules={{ required: true, valueAsDate: true }}
               render={({ field: { onChange, onBlur, value, name } }) => (
                 <DatePicker
-                  inputStyle={INPUT_STYLES}
+                  inputStyle={styles.input}
                   placeholder='Select Start Date'
                   onChange={(selectedOption) => onChange(selectedOption)}
                   onBlur={onBlur}
@@ -135,34 +137,34 @@ function EmployeesCreate() {
               )}
             />
           </div>
-          <div className={`${FIELD_STYLES} border-transparent`}>
-            <label className={LABEL_STYLES} htmlFor='street'>
+          <div className={`${styles.field} border-transparent`}>
+            <label className={styles.label} htmlFor='street'>
               Street
             </label>
             <input
               {...register("street")}
-              className={INPUT_STYLES}
+              className={styles.input}
               type='text'
               id='street'
               maxLength={40}
               minLength={3}
             />
           </div>
-          <div className={`${FIELD_STYLES} border-transparent`}>
-            <label className={LABEL_STYLES} htmlFor='city'>
+          <div className={`${styles.field} border-transparent`}>
+            <label className={styles.label} htmlFor='city'>
               City
             </label>
             <input
               {...register("city")}
-              className={INPUT_STYLES}
+              className={styles.input}
               type='text'
               id='city'
               maxLength={30}
               minLength={3}
             />
           </div>
-          <div className={`${FIELD_STYLES} border-transparent`}>
-            <label className={LABEL_STYLES} htmlFor='state'>
+          <div className={`${styles.field} border-transparent`}>
+            <label className={styles.label} htmlFor='state'>
               State
             </label>
             <Controller
@@ -171,7 +173,7 @@ function EmployeesCreate() {
               defaultValue=''
               render={({ field: { onChange, onBlur, value, name } }) => (
                 <FormSelect
-                  inputStyle={INPUT_STYLES}
+                  inputStyle={styles.input}
                   placeholder='Select State'
                   options={states}
                   onChange={(selectedOption) => onChange(selectedOption)}
@@ -182,13 +184,13 @@ function EmployeesCreate() {
               )}
             />
           </div>
-          <div className={`${FIELD_STYLES} border-transparent`}>
-            <label className={LABEL_STYLES} htmlFor='zipCode'>
+          <div className={`${styles.field} border-transparent`}>
+            <label className={styles.label} htmlFor='zipCode'>
               Zip Code
             </label>
             <input
               {...register("zipCode")}
-              className={INPUT_STYLES}
+              className={styles.input}
               type='text'
               id='zipCode'
               maxLength={10}
@@ -196,11 +198,11 @@ function EmployeesCreate() {
             />
           </div>
           <div
-            className={`${FIELD_STYLES} ${
+            className={`${styles.field} ${
               errors.department ? "border-alertDark " : "border-transparent"
             }`}
           >
-            <label className={LABEL_STYLES} htmlFor='department'>
+            <label className={styles.label} htmlFor='department'>
               Department
             </label>
             <Controller
@@ -210,7 +212,7 @@ function EmployeesCreate() {
               defaultValue=''
               render={({ field: { onChange, onBlur, value, name } }) => (
                 <FormSelect
-                  inputStyle={INPUT_STYLES}
+                  inputStyle={styles.input}
                   placeholder='Select Department'
                   options={departments}
                   onChange={(selectedOption) => onChange(selectedOption)}
@@ -222,11 +224,11 @@ function EmployeesCreate() {
             />
           </div>
           {Object.values(errors).length !== 0 ? (
-            <p className={ALERT_STYLES}>Please fill the required fields</p>
+            <p className={styles.alert}>Please fill the required fields</p>
           ) : null}
           <button
             type='submit'
-            className='bg-primary text-white h-16 w-56 mt-6 rounded-xl shadow-lg active:shadow-none'
+            className='bg-primary text-white h-16 w-56 m-6 rounded-xl shadow-lg active:shadow-none'
           >
             Save
           </button>

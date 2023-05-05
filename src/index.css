@@ -5,5 +5,5 @@
 @font-face {
   font-family: "copperplate";
   src: local("copperplate"),
-    url("./fonts/copperplate-new-regular-medium.otf") format("opentype");
+    url("./assets/fonts/copperplate-new-regular-medium.otf") format("opentype");
 }
