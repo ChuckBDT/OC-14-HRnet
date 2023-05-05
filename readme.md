@@ -2,7 +2,9 @@
 
 ## Description
 
-This project is a new version of the HR web application : HRnet
+This project is a new version of the HR web application : HRnet.
+
+The previous one was using jQuery and wasn't responsive. This one has been built using React and every jQuery plugin has been converted into React components. Using TailwindCSS, it is now also responsive.
 
 ## Installation
 
