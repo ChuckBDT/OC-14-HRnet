@@ -13,75 +13,68 @@ const DataTable = ({ data, columns }) => {
   );
 
   // Calculating the indexes of data to display depending on
-  // the active page
-  const getNumbers = () => {
-    if (pageActive === 1) {
-      return [0, displayedQt];
-    } else {
-      return [(pageActive - 1) * displayedQt, pageActive * displayedQt];
-    }
-  };
+  // the active page and the displayed quantity
+  const indexData =
+    pageActive === 1
+      ? [0, displayedQt]
+      : [(pageActive - 1) * displayedQt, pageActive * displayedQt];
 
-  const dataRefsToDisplay = getNumbers();
+  // Slicing the data based on the indexes calculated above
+  const slicedData = dataFiltered.slice(indexData[0], indexData[1]);
 
+  const columnsKeys = Object.keys(columns);
+
+  // Handle the select's choices
   const handleSelectChoice = (el) => {
     setQt(el);
     setPageActive(1);
   };
 
   const generateDesktopHead = useMemo(
-    () => (columns) => {
-      return Object.keys(columns).map((title, i) => (
+    () =>
+      columnsKeys.map((title, i) => (
         <th key={i} className='px-2 font-medium table-cell select-none'>
           {columns[title]}
         </th>
-      ));
-    },
+      )),
     [columns]
   );
 
-  const generateDesktopRows = useMemo(
-    () => (dataFiltered, dataRefsToDisplay) => {
-      return dataFiltered
-        .slice(dataRefsToDisplay[0], dataRefsToDisplay[1])
-        .map((data, i) => (
-          <tr
-            className='h-10 even:bg-secondary/75 text-primary text-sm'
-            key={i}
-          >
-            {Object.keys(columns).map((title, i) => (
-              <td key={i} className='p-2'>
-                {data[title]}
-              </td>
-            ))}
-          </tr>
-        ));
-    },
-    [dataFiltered, dataRefsToDisplay]
-  );
+  const rowDataDesktop = useMemo(() => {
+    console.log("Row data re-rendered!");
+    return (data, i) => (
+      <tr className='h-10 even:bg-secondary/75 text-primary text-sm' key={i}>
+        {columnsKeys.map((col, i) => (
+          <td key={i} className='p-2'>
+            {data[col]}
+          </td>
+        ))}
+      </tr>
+    );
+  }, [data]);
 
-  const generateMobileRows = useMemo(
-    () => (dataFiltered, dataRefsToDisplay) => {
-      return dataFiltered
-        .slice(dataRefsToDisplay[0], dataRefsToDisplay[1])
-        .map((data, i) => (
-          <ul
-            key={i}
-            className='h-fit p-2 bg-secondary/75 text-primary text-sm rounded-lg shadow'
-          >
-            {Object.keys(columns).map((title, i) => (
-              <li key={i} className='text-center'>
-                <span className='text-primaryLight'>
-                  {columns[title] + " : "}
-                </span>
-                {data[title]}
-              </li>
-            ))}
-          </ul>
-        ));
-    },
-    [dataFiltered, dataRefsToDisplay]
-  );
+  // const generateMobileRows = useMemo(
+  //   () => (dataFiltered, dataRefsToDisplay) => {
+  //     return dataFiltered
+  //       .slice(dataRefsToDisplay[0], dataRefsToDisplay[1])
+  //       .map((data, i) => (
+  //         <ul
+  //           key={i}
+  //           className='h-fit p-2 bg-secondary/75 text-primary text-sm rounded-lg shadow'
+  //         >
+  //           {columnsKeys.map((title, i) => (
+  //             <li key={i} className='text-center'>
+  //               <span className='text-primaryLight'>
+  //                 {columns[title] + " : "}
+  //               </span>
+  //               {data[title]}
+  //             </li>
+  //           ))}
+  //         </ul>
+  //       ));
+  //   },
+  //   [dataFiltered, dataRefsToDisplay]
+  // );
 
   return (
     <>
@@ -105,15 +98,15 @@ const DataTable = ({ data, columns }) => {
       <div className='rounded-lg shadow overflow-auto hidden lg:block'>
         <table className='w-full'>
           <thead className='bg-secondary text-primary drop-shadow h-12 '>
-            <tr className='text-left '>{generateDesktopHead(columns)}</tr>
+            <tr className='text-left '>{generateDesktopHead}</tr>
           </thead>
           <tbody className='bg-tertiary'>
-            {generateDesktopRows(dataFiltered, dataRefsToDisplay)}
+            {slicedData.map((data, i) => rowDataDesktop(data, i))}
           </tbody>
         </table>
       </div>
       <div className='lg:hidden grid grid-cols-1 sm:grid-cols-2 gap-4 h-full'>
-        {generateMobileRows(dataFiltered, dataRefsToDisplay)}
+        {/* {generateMobileRows(dataFiltered, dataRefsToDisplay)} */}
       </div>
       <div className='flex justify-between my-2 '>
         <div className='text-primary italic text-sm hidden sm:block'>
