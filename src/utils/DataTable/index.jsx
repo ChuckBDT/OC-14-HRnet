@@ -53,28 +53,22 @@ const DataTable = ({ data, columns }) => {
     );
   }, [data]);
 
-  // const generateMobileRows = useMemo(
-  //   () => (dataFiltered, dataRefsToDisplay) => {
-  //     return dataFiltered
-  //       .slice(dataRefsToDisplay[0], dataRefsToDisplay[1])
-  //       .map((data, i) => (
-  //         <ul
-  //           key={i}
-  //           className='h-fit p-2 bg-secondary/75 text-primary text-sm rounded-lg shadow'
-  //         >
-  //           {columnsKeys.map((title, i) => (
-  //             <li key={i} className='text-center'>
-  //               <span className='text-primaryLight'>
-  //                 {columns[title] + " : "}
-  //               </span>
-  //               {data[title]}
-  //             </li>
-  //           ))}
-  //         </ul>
-  //       ));
-  //   },
-  //   [dataFiltered, dataRefsToDisplay]
-  // );
+  const rowDataMobile = useMemo(() => {
+    console.log("Row data re-rendered!");
+    return (data, i) => (
+      <ul
+        key={i}
+        className='h-fit p-2 bg-secondary/75 text-primary text-sm rounded-lg shadow'
+      >
+        {columnsKeys.map((title, i) => (
+          <li key={i} className='text-center'>
+            <span className='text-primaryLight'>{columns[title] + " : "}</span>
+            {data[title]}
+          </li>
+        ))}
+      </ul>
+    );
+  }, [data]);
 
   return (
     <>
@@ -106,7 +100,7 @@ const DataTable = ({ data, columns }) => {
         </table>
       </div>
       <div className='lg:hidden grid grid-cols-1 sm:grid-cols-2 gap-4 h-full'>
-        {/* {generateMobileRows(dataFiltered, dataRefsToDisplay)} */}
+        {slicedData.map((data, i) => rowDataMobile(data, i))}
       </div>
       <div className='flex justify-between my-2 '>
         <div className='text-primary italic text-sm hidden sm:block'>
