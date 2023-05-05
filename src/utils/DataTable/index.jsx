@@ -1,7 +1,15 @@
 import React, { useMemo, useState } from "react";
+import PropTypes from "prop-types";
+
 import SimpleSelect from "../SimpleSelect";
 import Pagination from "./components/Pagination";
 
+/**
+ * A table component that displays data in rows and columns, with pagination and filtering capabilities.
+ * @param {Object[]} data - An array of objects representing the data to be displayed in the table.
+ * @param {Object.<string, string>} columns - An object that maps column keys to column names.
+ * @returns {JSX.Element} - A React component that displays the table.
+ */
 const DataTable = ({ data, columns }) => {
   const [filter, setFilter] = useState("");
   const [displayedQt, setQt] = useState(10);
@@ -30,6 +38,7 @@ const DataTable = ({ data, columns }) => {
     setPageActive(1);
   };
 
+  // Generating the column names for the table
   const generateDesktopHead = useMemo(
     () =>
       columnsKeys.map((title, i) => (
@@ -41,7 +50,6 @@ const DataTable = ({ data, columns }) => {
   );
 
   const rowDataDesktop = useMemo(() => {
-    console.log("Row data re-rendered!");
     return (data, i) => (
       <tr className='h-10 even:bg-secondary/75 text-primary text-sm' key={i}>
         {columnsKeys.map((col, i) => (
@@ -54,7 +62,6 @@ const DataTable = ({ data, columns }) => {
   }, [data]);
 
   const rowDataMobile = useMemo(() => {
-    console.log("Row data re-rendered!");
     return (data, i) => (
       <ul
         key={i}
@@ -88,7 +95,6 @@ const DataTable = ({ data, columns }) => {
           }}
         ></input>
       </div>
-
       <div className='rounded-lg shadow overflow-auto hidden lg:block'>
         <table className='w-full'>
           <thead className='bg-secondary text-primary drop-shadow h-12 '>
@@ -115,6 +121,11 @@ const DataTable = ({ data, columns }) => {
       </div>
     </>
   );
+};
+
+DataTable.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  columns: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 export default DataTable;

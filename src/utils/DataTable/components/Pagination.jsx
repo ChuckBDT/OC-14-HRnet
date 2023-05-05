@@ -1,6 +1,17 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import SimpleSelect from "../../SimpleSelect";
 
+/**
+ * Renders pagination buttons for data filtering
+ * @param {Object} props - Component props
+ * @param {Array} props.dataFiltered - Array of filtered data objects
+ * @param {number} props.displayedQt - Number of data items to display per page
+ * @param {number} props.pageActive - The current active page
+ * @param {Function} props.setPageActive - Function to update the active page
+ * @returns {JSX.Element} - Pagination component JSX elements
+ */
 const Pagination = ({
   dataFiltered,
   displayedQt,
@@ -11,8 +22,11 @@ const Pagination = ({
     "group bg-secondary text-primary disabled:text-primaryLight shadow active:shadow-none disabled:shadow h-10 w-10 flex justify-center items-center rounded-lg select-none";
   const PAGINATION_STYLES = "fill-primary group-disabled:fill-primaryLight";
 
-  // Calculating the pagination needed to display the data
-  // based on the select limit
+  /**
+   * Calculates the pagination based on the filtered data and the number
+   * of items to display per page
+   * @returns {Array} - An array of numbers representing the pagination
+   */
   const calculatePagination = () => {
     let floor = Math.floor(dataFiltered.length / displayedQt);
     const modulo = dataFiltered.length % displayedQt;
@@ -112,6 +126,13 @@ const Pagination = ({
       </button>
     </div>
   );
+};
+
+Pagination.propTypes = {
+  dataFiltered: PropTypes.arrayOf(PropTypes.object).isRequired,
+  displayedQt: PropTypes.number.isRequired,
+  pageActive: PropTypes.number.isRequired,
+  setPageActive: PropTypes.func.isRequired,
 };
 
 export default Pagination;

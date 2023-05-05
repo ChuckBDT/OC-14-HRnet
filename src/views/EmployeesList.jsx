@@ -7,7 +7,7 @@ function EmployeesList() {
   const data = useStore((state) => state.employees);
 
   // Here you define the ordre of the columns you want in the table
-  // and also the names of them
+  // and also the names of them, based on your datas attributes
   const columns = {
     firstName: "First Name",
     lastName: "Last Name",
