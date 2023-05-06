@@ -15,8 +15,8 @@ function EmployeesList() {
     window.scrollTo(0, 0);
   }, []);
 
-  // Here you define the ordre of the columns you want in the table
-  // and also the names of them, based on your datas attributes
+  // Here you define the order of the columns you want in the table
+  // and also the names of them, based on your data attributes
   const columns = {
     firstName: "First Name",
     lastName: "Last Name",

@@ -1,5 +1,18 @@
 import React, { useState, useEffect, useRef } from "react";
+import PropTypes from "prop-types";
 
+/**
+ * A simple select component.
+ *
+ * @typedef {Object} Props
+ * @property {string[]} options - The list of options to display in the select.
+ * @property {(el: string) => void} handle - The callback function to handle the selection of an option.
+ * @property {string} value - The currently selected value.
+ * @property {boolean} [down=true] - Whether to open the select dropdown downwards or upwards.
+ *
+ * @param {Props} props - The props object.
+ * @returns {JSX.Element} - The rendered select component.
+ */
 const SimpleSelect = ({ options, handle, value, down = true }) => {
   const [open, setOpen] = useState(false);
   const selectRef = useRef();
@@ -83,6 +96,13 @@ const SimpleSelect = ({ options, handle, value, down = true }) => {
       )}
     </div>
   );
+};
+
+SimpleSelect.propTypes = {
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  handle: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+  down: PropTypes.bool,
 };
 
 export default SimpleSelect;
