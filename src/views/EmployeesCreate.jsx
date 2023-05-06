@@ -37,6 +37,7 @@ function EmployeesCreate() {
 
   useEffect(() => {
     document.title = "HRnet | Create Employee";
+    window.scrollTo(0, 0);
   }, []);
 
   const onSubmit = (data) => {

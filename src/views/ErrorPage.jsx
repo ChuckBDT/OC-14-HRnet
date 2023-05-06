@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 const ErrorPage = () => {
   useEffect(() => {
     document.title = "HRnet | Error 404";
+    window.scrollTo(0, 0);
   }, []);
 
   return (

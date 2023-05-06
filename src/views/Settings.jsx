@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 function Settings() {
   useEffect(() => {
     document.title = "HRnet | Settings";
+    window.scrollTo(0, 0);
   }, []);
 
   return (

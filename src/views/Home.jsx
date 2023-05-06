@@ -10,6 +10,7 @@ import Logo from "../assets/logo.svg";
 function Home() {
   useEffect(() => {
     document.title = "HRnet | Home";
+    window.scrollTo(0, 0);
   }, []);
 
   return (
@@ -22,7 +23,7 @@ function Home() {
         <img
           src={Logo}
           alt=''
-          className='sm:h-1/2 h-1/3 w-2/3 lg:w-1/4 max-w-md animate-logoSpin'
+          className='sm:h-1/2 h-1/3 w-2/3 lg:w-1/4 max-w-md animate-logoSpin hidden lg:block'
         />
       </div>
     </main>

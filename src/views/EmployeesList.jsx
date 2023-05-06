@@ -12,6 +12,7 @@ function EmployeesList() {
 
   useEffect(() => {
     document.title = "HRnet | Employee List";
+    window.scrollTo(0, 0);
   }, []);
 
   // Here you define the ordre of the columns you want in the table
