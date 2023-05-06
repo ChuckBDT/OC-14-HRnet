@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        copperplate: ["copperplate"],
+        copperplate: ["copperplate", "Arial", "sans-serif"],
       },
       colors: colors,
       animation: {

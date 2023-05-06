@@ -44,6 +44,7 @@ const Pagination = ({
         disabled={pageActive === 1 ? true : false}
         onClick={() => setPageActive(pagination[0])}
         className={PAGE_SEL_STYLES}
+        aria-label='Go to the first page'
       >
         <svg
           stroke='currentColor'
@@ -63,6 +64,7 @@ const Pagination = ({
         disabled={pageActive === 1 ? true : false}
         onClick={() => setPageActive(pageActive - 1)}
         className={PAGE_SEL_STYLES}
+        aria-label='Go to the previous page'
       >
         <svg
           stroke='currentColor'
@@ -89,6 +91,7 @@ const Pagination = ({
         }
         onClick={() => setPageActive(pageActive + 1)}
         className={PAGE_SEL_STYLES}
+        aria-label='Go to the next page'
       >
         <svg
           stroke='currentColor'
@@ -109,6 +112,7 @@ const Pagination = ({
         }
         onClick={() => setPageActive(pagination[pagination.length - 1])}
         className={PAGE_SEL_STYLES}
+        aria-label='Go to the last page'
       >
         <svg
           stroke='currentColor'

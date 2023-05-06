@@ -22,8 +22,9 @@ function Home() {
         </div>
         <img
           src={Logo}
-          alt=''
+          alt='HRnet Logo'
           className='sm:h-1/2 h-1/3 w-2/3 lg:w-1/4 max-w-md animate-logoSpin hidden lg:block'
+          height='33,33%'
         />
       </div>
     </main>
