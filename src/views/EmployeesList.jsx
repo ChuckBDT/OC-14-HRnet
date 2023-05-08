@@ -35,7 +35,7 @@ function EmployeesList() {
         Employee's List
       </h1>
       <div className='w-[80%] text-primary'>
-        <DataTable data={mockedData} columns={columns} />
+        <DataTable data={data} columns={columns} />
       </div>
     </main>
   );
