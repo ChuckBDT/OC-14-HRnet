@@ -2,16 +2,14 @@ import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 
 /**
- * A simple select component.
+ * Renders a simple select component.
  *
- * @typedef {Object} Props
- * @property {string[]} options - The list of options to display in the select.
- * @property {(el: string) => void} handle - The callback function to handle the selection of an option.
- * @property {string} value - The currently selected value.
- * @property {boolean} [down=true] - Whether to open the select dropdown downwards or upwards.
- *
- * @param {Props} props - The props object.
- * @returns {JSX.Element} - The rendered select component.
+ * @param {Object} props - The component props.
+ * @param {string[]|number[]} props.options - An array of options to display in the select dropdown.
+ * @param {function} props.handle - A function that handles the select change.
+ * @param {string|number} props.value - The currently selected value.
+ * @param {boolean} [props.down=true] - Determines if the dropdown should appear below or above the button.
+ * @returns {JSX.Element} - The JSX element.
  */
 const SimpleSelect = ({ options, handle, value, down = true }) => {
   const [open, setOpen] = useState(false);
@@ -99,9 +97,11 @@ const SimpleSelect = ({ options, handle, value, down = true }) => {
 };
 
 SimpleSelect.propTypes = {
-  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  ).isRequired,
   handle: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   down: PropTypes.bool,
 };
 
