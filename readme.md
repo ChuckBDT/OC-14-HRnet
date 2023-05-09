@@ -10,7 +10,7 @@ The previous one was using jQuery and wasn't responsive. This one has been built
 
 To run this project on your local machine, follow these steps:
 
-1. Clone the repository onto your machine using `git clone https://github.com/ChuckBDT/OC-14-HRnet`
+1. Clone the repository onto your machine using `git clone --recurse-submodules https://github.com/ChuckBDT/OC-14-HRnet`
 2. Navigate into the project directory with `cd oc-14-hrnet`
 3. Install dependencies with `npm install`
 4. Start the development server with `npm run dev`
