@@ -24,9 +24,11 @@ const styles = {
  * @component
  */
 function EmployeesCreate() {
+  const storeData = useStore((state) => state.employees);
   const addEmployee = useStore((state) => state.addEmployee);
 
-  const [setModalOne, triggerModalOne] = useModal();
+  const [setModalSuccess, triggerModalSuccess] = useModal();
+  const [setModalDuplicate, triggerModalDuplicated] = useModal();
   const {
     register,
     handleSubmit,
@@ -41,10 +43,18 @@ function EmployeesCreate() {
   }, []);
 
   const onSubmit = (data) => {
-    addEmployee(data);
-    reset();
-    triggerModalOne();
+    const twin = storeData.some(
+      (person) => JSON.stringify(person) == JSON.stringify(data)
+    );
+    if (twin) {
+      triggerModalDuplicated();
+    } else {
+      addEmployee(data);
+      reset();
+      triggerModalSuccess();
+    }
   };
+
   return (
     <main className='bg-tertiary mb-32 lg:mb-0 lg:pb-24 lg:ml-24'>
       <h1 className='text-center py-8 text-2xl font-bold text-primary'>
@@ -238,7 +248,12 @@ function EmployeesCreate() {
           </button>
         </form>
       </div>
-      {setModalOne(<p className='text-primary'>Employee Created !</p>)}
+      {setModalSuccess(<p className='text-primary'>Employee Created !</p>)}
+      {setModalDuplicate(
+        <p className='text-primary'>
+          This employee is already in the database.
+        </p>
+      )}
     </main>
   );
 }
