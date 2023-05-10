@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import SimpleSelect from "../SimpleSelect";
 import Pagination from "./components/Pagination";
+import { sortDefault, sortDown, sortUp } from "./components/iconsBank";
 
 /**
  * A table component that displays data in rows and columns, with pagination and filtering capabilities.
@@ -14,9 +15,28 @@ const DataTable = ({ data, columns }) => {
   const [filter, setFilter] = useState("");
   const [displayedQt, setQt] = useState(10);
   const [pageActive, setPageActive] = useState(1);
+  const [sort, setSort] = useState({ field: null, order: null });
+
+  // Sorting data based on the current sort field and order
+  const sortedData = useMemo(() => {
+    if (sort.field && sort.order) {
+      const sorted = [...data].sort((a, b) => {
+        if (a[sort.field] < b[sort.field]) {
+          return sort.order === 1 ? -1 : 1;
+        } else if (a[sort.field] > b[sort.field]) {
+          return sort.order === 1 ? 1 : -1;
+        } else {
+          return 0;
+        }
+      });
+      return sorted;
+    } else {
+      return data;
+    }
+  }, [data, sort]);
 
   // Filtering data from props with input's content
-  const dataFiltered = data.filter((data) =>
+  const dataFiltered = sortedData.filter((data) =>
     JSON.stringify(data).toLowerCase().includes(filter.toLowerCase())
   );
 
@@ -38,22 +58,38 @@ const DataTable = ({ data, columns }) => {
     setPageActive(1);
   };
 
+  const sortIcon = (title) => {
+    if (sort.field !== title) {
+      return <span>{sortDefault}</span>;
+    } else if (sort.order == 1) {
+      return <span>{sortUp}</span>;
+    } else {
+      return <span>{sortDown}</span>;
+    }
+  };
   // Generating the column names for the table
-  const generateDesktopHead = useMemo(
-    () =>
-      columnsKeys.map((title, i) => (
-        <th key={i} className='px-2 font-medium table-cell select-none'>
-          {columns[title]}
-        </th>
-      )),
-    [columns]
-  );
+  const generateDesktopHead = columnsKeys.map((title, i) => (
+    <th
+      key={i}
+      className='px-2 font-medium table-cell select-none cursor-pointer whitespace-nowrap'
+      onClick={() => {
+        if (sort.field == null || sort.field !== title) {
+          setSort({ field: title, order: 1 });
+        } else {
+          setSort({ field: title, order: sort.order * -1 });
+        }
+      }}
+    >
+      {columns[title]}
+      {sortIcon(title)}
+    </th>
+  ));
 
   const rowDataDesktop = useMemo(() => {
     return (data, i) => (
-      <tr className='h-10 even:bg-secondary/75 text-primary text-sm' key={i}>
+      <tr className='h-10 even:bg-secondary/75 text-primary text-sm ' key={i}>
         {columnsKeys.map((col, i) => (
-          <td key={i} className='p-2'>
+          <td key={i} className='p-2 '>
             {data[col]}
           </td>
         ))}

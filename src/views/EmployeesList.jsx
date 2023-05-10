@@ -34,7 +34,7 @@ function EmployeesList() {
       <h1 className='text-center py-8 text-2xl font-bold text-primary'>
         Employee's List
       </h1>
-      <div className='w-[80%] text-primary'>
+      <div className='w-[90%] text-primary'>
         <DataTable data={mockedData} columns={columns} />
       </div>
     </main>
